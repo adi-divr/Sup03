@@ -1,0 +1,116 @@
+.container {
+    width: 100%;
+    max-width: 340px; /* Adjusted to match the mobile screenshot */
+    margin: 0 auto;
+    padding: 20px 15px; /* Reduced padding for mobile view */
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 60px; /* Adjusted logo size for mobile */
+    height: auto;
+  }
+  
+  form {
+    background: #f9f9f9;
+    padding: 20px 15px; /* Reduced padding for compact mobile layout */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  form label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  form input[type="text"],
+  form input[type="email"],
+  form button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  form p {
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .radio-group {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    gap: 10px; /* Narrow gap for better spacing */
+    margin: 5px 0 15px;
+  }
+  
+  .radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .radio-group input[type="radio"] {
+    order: 1; /* Ensures the radio button appears after the text */
+    margin-left: 5px; /* Slight spacing to avoid overlap with text */
+  }
+  
+  .radio-group label:first-child {
+    margin-right: 10px; /* Adds spacing between the Yes and No labels */
+  }
+  
+  form button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #444;
+  }
+  
+  form button:active {
+    background-color: #333;
+    
+  }
+  
+  /* Mobile-specific adjustments */
+  @media (max-width: 480px) {
+    .container {
+      max-width: 320px; /* Narrower width for smaller devices */
+    }
+  
+    img {
+      width: 50px; /* Adjusted logo size further for smaller screens */
+    }
+  
+    form {
+      padding: 15px; /* Reduced form padding for better fit */
+    }
+  
+    form input[type="text"],
+    form input[type="email"],
+    form button {
+      font-size: 13px; /* Slightly smaller text for compact view */
+    }
+  
+    .radio-group {
+      gap: 10px; /* Reduced gap for narrow screens */
+    }
+  }
+  

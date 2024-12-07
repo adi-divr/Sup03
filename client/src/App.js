@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
+import Calendar from './Pages/Calendar';
+import Slotbooking from './Pages/Slotbooking';
+import Slotform from './Pages/Slotform';
+import Confirm from './Pages/ConfirmPage';
+import Checkout from './Pages/Checkout';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          {/* Route for Calendar page */}
+          <Route path="/" element={<Calendar />} />
+
+          {/* Route for Slotbooking */}
+          <Route path="/slotbooking" element={<Slotbooking />} />
+
+          {/* Route for Slotform */}
+          <Route path="/slotform" element={<Slotform />} />
+
+          {/* Route for Confirm */}
+          <Route path="/confirmPage" element={<Confirm />} />
+
+          {/* Route for Checkout (Checklast) */}
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

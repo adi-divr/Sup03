@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.confirm-container1 {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    padding-left: 20px;  /* Move everything inside the container a little to the right */
+}
+
+.logo-container1 {
+    margin-bottom: 20px;
+    /* padding-left: 110px;  Moves the logo container to the right */
+}
+
+.checkout-title1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.scan-title1 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.qr-image1 {
+    width: 232px;
+    height: 268px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.instructions1 {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+}
+
+.instructions strong {
+    font-weight: 600;
+}
+
+.instructions ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
