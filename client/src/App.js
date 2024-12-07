@@ -10,7 +10,7 @@ import Checkout from './Pages/Checkout';
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename="/Sup03">
         <Routes>
           {/* Route for Calendar page */}
           <Route path="/" element={<Calendar />} />

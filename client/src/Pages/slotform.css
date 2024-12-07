@@ -5,6 +5,7 @@
     padding: 20px 15px; /* Reduced padding for mobile view */
     text-align: center;
     font-family: Arial, sans-serif;
+    
   }
   
   img {
@@ -16,9 +17,10 @@
   
   form {
     background: #f9f9f9;
-    padding: 20px 15px; /* Reduced padding for compact mobile layout */
+    padding: 20px 30px; /* Reduced padding for compact mobile layout */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
   }
   
   form label {
@@ -78,6 +80,7 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
   }
   
   form button:hover {
