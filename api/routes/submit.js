@@ -1,16 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const { google } = require("googleapis");
 
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Middleware
-app.use(bodyParser.json());
+const router = express.Router();
 
 // POST route to handle data submission
-app.post("/api/submit", async (req, res) => {
+router.post("/", async (req, res) => {
   const { formData, slotAndDate } = req.body;
 
   if (!Array.isArray(formData) || typeof slotAndDate !== "object") {
@@ -75,7 +70,4 @@ app.post("/api/submit", async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+module.exports = router;
