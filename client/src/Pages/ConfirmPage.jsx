@@ -39,7 +39,7 @@ const Confirm = () => {
     };
 
     try {
-      const response = await fetch("/api/submit", {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/submit`, {
         method: "POST",
         headers: {
           Accept: "application/json",
