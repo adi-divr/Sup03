@@ -15,10 +15,24 @@ const Performance = require("./routes/Performance")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors()); // Enable CORS
+
+
+
+const corsOptions = {
+  origin: ['https://adi-divr.github.io'], // Allow only the GitHub Pages origin
+  methods: ['GET', 'POST'], // Allow GET and POST requests
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+
 // Middleware
 app.use(express.json()); // Express's built-in JSON parser
-
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 // Routes
 app.use("/api/submit", submitRoute); // Attach submit API    adminview uses this
 app.use("/api/GetData", GetData); // Attach another API       adminview 

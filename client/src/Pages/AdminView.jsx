@@ -3,7 +3,7 @@ import "./adminview.css";
 import logo from "../../src/assets/logo.png"; // Update the path as per your project structure
 import nextButton from "../../src/assets/next.png"; // Update the path as per your project structure
 import { useNavigate } from "react-router-dom"; // For navigation in React
-const API_BASE_URL =" https://51b8-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+const API_BASE_URL ="https://9cd7-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
 
 
 const AdminView = () => {
@@ -11,18 +11,56 @@ const AdminView = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(`${API_BASE_URL}/api/GetData`);
+  //       console.log(response.status);
+
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch data");
+  //       }
+  //       const result = await response.json();
+  //       const rows = result.data;
+
+  //       const formattedData = rows.slice(1).map((row) => ({
+  //         name: row[0] || "",
+  //         email: row[1] || "",
+  //         phone: row[2] || "",
+  //         slot: row[5] || "",
+  //         ddmm: row[6] || "",
+  //         bookingDate: row[7] || "",
+  //       }));
+
+  //       setBookings(formattedData);
+  //     } catch (err) {
+  //       if (err instanceof Error) {
+  //         setError(err.message);
+  //       } else {
+  //         setError("An unknown error occurred");
+  //       }
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/api/GetData`);
-        console.log(response.status);
-
+        console.log("Response Status:", response.status);
+        const text = await response.text(); // Log raw response
+        console.log("Raw Response:", text);
+  
         if (!response.ok) {
-          throw new Error("Failed to fetch data");
+          throw new Error(`Failed to fetch data: ${response.status}`);
         }
-        const result = await response.json();
+  
+        // Try parsing the raw text as JSON
+        const result = JSON.parse(text); 
+        console.log("Parsed Data:", result);
+  
         const rows = result.data;
-
         const formattedData = rows.slice(1).map((row) => ({
           name: row[0] || "",
           email: row[1] || "",
@@ -31,20 +69,16 @@ const AdminView = () => {
           ddmm: row[6] || "",
           bookingDate: row[7] || "",
         }));
-
+  
         setBookings(formattedData);
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
+        console.error("Error fetching data:", err);
+        setError(err.message || "An unknown error occurred");
       }
     };
-
+  
     fetchData();
   }, []);
-
   const handleNextClick = (name, slot, date) => {
     navigate(
       `/adminConfirm?isadmin=true&name=${encodeURIComponent(name)}&slot=${encodeURIComponent(slot)}&bookingdate=${encodeURIComponent(
