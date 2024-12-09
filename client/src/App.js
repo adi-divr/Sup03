@@ -18,18 +18,18 @@ function AppRoutes() {
   const searchParams = new URLSearchParams(location.search);
   const isAdmin = searchParams.get("isadmin") === "true";
 
-  // if (isAdmin) {
-  //   // Render AdminView and AdminCalendar for admin
-  //   return (
-  //     <Routes>
-  //       <Route path="/" element={<AdminView />} />
-  //       <Route path="/adminCalendar" element={<AdminCalendar />} />
-  //       <Route path="/admincalendarvalueview" element={<AdminDataView />} />
-  //       <Route path="/performance" element={<PerformancePage />} />
-  //       <Route path="/adminConfirm" element={<ConfirmAdmin />} />
-  //     </Routes>
-  //   );
-  // }
+  if (isAdmin) {
+    // Render AdminView and AdminCalendar for admin
+    return (
+      <Routes>
+        <Route path="/" element={<AdminView />} />
+        <Route path="/adminCalendar" element={<AdminCalendar />} />
+        <Route path="/admincalendarvalueview" element={<AdminDataView />} />
+        <Route path="/performance" element={<PerformancePage />} />
+        <Route path="/adminConfirm" element={<ConfirmAdmin />} />
+      </Routes>
+    );
+  }
 
   // Render Calendar and other associated routes when not admin
   return (
