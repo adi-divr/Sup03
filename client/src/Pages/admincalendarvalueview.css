@@ -1,0 +1,53 @@
+.confirmation-portal {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1px dashed #007bff;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  .portal-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .portal-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .total-slots,
+  .selected-date {
+    font-weight: bold;
+  }
+  
+  .portal-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .detail-card {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+  }
+  
+  .detail-name,
+  .detail-phone {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .no-details {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+  }
+  
