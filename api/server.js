@@ -15,7 +15,10 @@ const Performance = require("./routes/Performance")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: 'https://adi-divr.github.io/Sup03',
+  credentials: true,
+})); // Enable CORS
 // Middleware
 app.use(express.json()); // Express's built-in JSON parser
 

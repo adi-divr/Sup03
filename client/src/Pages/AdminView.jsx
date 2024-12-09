@@ -15,6 +15,8 @@ const AdminView = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/api/GetData`);
+        console.log(response.status);
+
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
