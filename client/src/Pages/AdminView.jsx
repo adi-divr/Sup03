@@ -3,7 +3,7 @@ import "./adminview.css";
 import logo from "../../src/assets/logo.png"; // Update the path as per your project structure
 import nextButton from "../../src/assets/next.png"; // Update the path as per your project structure
 import { useNavigate } from "react-router-dom"; // For navigation in React
-const API_BASE_URL ="https://9cd7-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+const API_BASE_URL ="https://9f7a-2406-7400-bd-f8e9-4ae-8774-746a-966.ngrok-free.app"
 
 
 const AdminView = () => {

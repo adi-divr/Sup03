@@ -18,13 +18,13 @@ const PORT = process.env.PORT || 5000;
 
 
 
-const corsOptions = {
-  origin: ['https://adi-divr.github.io'], // Allow only the GitHub Pages origin
-  methods: ['GET', 'POST'], // Allow GET and POST requests
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: ['https://adi-divr.github.io'], // Allow only the GitHub Pages origin
+//   methods: ['GET', 'POST'], // Allow GET and POST requests
+//   credentials: true,
+// }; 
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 // Middleware
