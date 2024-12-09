@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./admincalendarvalueview.css";
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
 
 const AdminDataView = () => {
   const [totalSlots, setTotalSlots] = useState(0); // Initialize totalSlots as 0
@@ -18,7 +20,7 @@ const AdminDataView = () => {
       if (!selectedDate) return;
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValueView?date=${selectedDate}`);
+        const response = await fetch(`${API_BASE_URL}/api/GetCalendarValueView?date=${selectedDate}`);//{process.env.REACT_APP
         const data = await response.json();
 
         if (response.ok) {

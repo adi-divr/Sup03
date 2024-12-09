@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './performance.css';
 import logo from "../../src/assets/logo.png";
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
+
 
 const PerformancePage = () => {
   const [data, setData] = useState({
@@ -13,7 +16,7 @@ const PerformancePage = () => {
   const fetchMonthlyDetails = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/api/Performance?month=${month}&year=${year}`
+        `${API_BASE_URL}/api/Performance?month=${month}&year=${year}`
       );
       const result = await response.json();
       setData({

@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom"; // React Router
 import logo from "../../src/assets/logo.png"; // Adjust path as needed
 import "./slotform.css";
 
+
+
 const Slotform = () => {
   const [mail, setMail] = useState("");
   const [number, setMobile] = useState("");

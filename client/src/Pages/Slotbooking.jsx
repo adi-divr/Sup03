@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom"; // React Router for
 import logo from "../../src/assets/logo.png"; // Adjust the path as needed
 import "./slotbooking.css";
 
+
+
 const Slotbooking = () => {
   const location = useLocation(); // For accessing query parameters
   const navigate = useNavigate(); // For navigation

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation
 import logo from "../../src/assets/logo.png"; // Adjust path as needed
 import "./confirmpage.css";
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
+
 
 const Confirm = () => {
   const navigate = useNavigate();
@@ -39,7 +42,7 @@ const Confirm = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/submit`, {
+      const response = await fetch(`${API_BASE_URL}/api/submit`, {
         method: "POST",
         headers: {
           Accept: "application/json",

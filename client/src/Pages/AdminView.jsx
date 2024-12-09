@@ -3,6 +3,8 @@ import "./adminview.css";
 import logo from "../../src/assets/logo.png"; // Update the path as per your project structure
 import nextButton from "../../src/assets/next.png"; // Update the path as per your project structure
 import { useNavigate } from "react-router-dom"; // For navigation in React
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
 
 const AdminView = () => {
   const [bookings, setBookings] = useState([]);
@@ -12,7 +14,7 @@ const AdminView = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetData`);
+        const response = await fetch(`${API_BASE_URL}/api/GetData`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }

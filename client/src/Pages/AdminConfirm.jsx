@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../src/assets/logo.png"; // Adjust the path if necessary
 import "./adminconfirm.css";
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
+
 
 const ConfirmAdmin = () => {
   const [bookings, setBookings] = useState([]);
@@ -22,7 +25,7 @@ const ConfirmAdmin = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(slotParam)}`
+          `${API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(slotParam)}`
         );
 
         if (!response.ok) {
@@ -67,7 +70,7 @@ const ConfirmAdmin = () => {
     }));
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Accepted`, {
+      const response = await fetch(`${API_BASE_URL}/api/Accepted`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

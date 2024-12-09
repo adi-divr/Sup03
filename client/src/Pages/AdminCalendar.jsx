@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // React Router for navigation
 import "./admincalendar.css";
 import logo from "../../src/assets/logo.png"; // Adjust path based on your structure
+const API_BASE_URL ="https://a0e4-2406-7400-bd-f8e9-102f-dd26-6dea-8ecc.ngrok-free.app"
+
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -13,11 +15,11 @@ const Calendar = () => {
     return new Date(year, month + 1, 0).getDate(); // Returns the last day of the month
   };
 
-  // Fetch slots data from the server
+  // Fetch slots data from the server  
   useEffect(() => {
     const fetchSlotsData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`);
+        const response = await fetch(`${API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`);
         const data = await response.json();
         if (response.ok) {
           setSlotsData(data.slots); // Expected format: { "2024-12-05": 18, "2024-12-06": 10 }
