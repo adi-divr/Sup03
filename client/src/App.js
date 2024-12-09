@@ -9,27 +9,27 @@ import Checkout from "./Pages/Checkout";
 import AdminView from "./Pages/AdminView"; // Admin page component
 import AdminCalendar from "./Pages/AdminCalendar"; // Admin Calendar component
 import ConfirmAdmin from "./Pages/AdminConfirm";
-import AdminDataView from "./Pages/AdminCalendarValueView"
+import AdminDataView from "./Pages/AdminCalendarValueView";
 import PerformancePage from "./Pages/Performance";
+
 // Conditional routing logic based on URL query parameter
 function AppRoutes() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const isAdmin = searchParams.get("isadmin") === "true";
 
-  if (isAdmin) {
-    // Render AdminView and AdminCalendar for admin
-    return (
-      <Routes>
-        <Route path="/" element={<AdminView />} />
-        <Route path="/adminCalendar" element={<AdminCalendar />} />
-        <Route path="/admincalendarvalueview" element={<AdminDataView />} />
-        <Route path="/performance" element={<PerformancePage />} />
-
-        <Route path="/adminConfirm" element={<ConfirmAdmin />} />
-      </Routes>
-    );
-  }
+  // if (isAdmin) {
+  //   // Render AdminView and AdminCalendar for admin
+  //   return (
+  //     <Routes>
+  //       <Route path="/" element={<AdminView />} />
+  //       <Route path="/adminCalendar" element={<AdminCalendar />} />
+  //       <Route path="/admincalendarvalueview" element={<AdminDataView />} />
+  //       <Route path="/performance" element={<PerformancePage />} />
+  //       <Route path="/adminConfirm" element={<ConfirmAdmin />} />
+  //     </Routes>
+  //   );
+  // }
 
   // Render Calendar and other associated routes when not admin
   return (
@@ -46,7 +46,7 @@ function AppRoutes() {
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename="/Sup03">
         <AppRoutes />
       </Router>
     </div>
