@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-
+const path = require('path')
 
 const submitRoute = require("./routes/submit");
 // const anotherApiRoute = require("./routes/anotherApi");   
@@ -41,6 +41,13 @@ app.use("/api/GetFilteredData", GetFilteredData); //adminconfirm
 app.use("/api/Accepted", Accepted);  //adminconfirm
 app.use("/api/GetCalendarValueView", GetCalendarValueView);  
 app.use("/api/Performance", Performance)
+
+
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Start the server
 app.listen(PORT, () => {

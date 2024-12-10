@@ -46,7 +46,7 @@ function AppRoutes() {
 function App() {
   return (
     <div className="App">
-      <Router basename="/Sup03">
+      <Router >
         <AppRoutes />
       </Router>
     </div>
