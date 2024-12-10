@@ -20,7 +20,7 @@ const AdminDataView = () => {
       if (!selectedDate) return;
 
       try {
-        const response = await fetch(`${API_BASE_URL}/api/GetCalendarValueView?date=${selectedDate}`);//{process.env.REACT_APP
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValueView?date=${selectedDate}`);//{process.env.REACT_APP
         const data = await response.json();
 
         if (response.ok) {

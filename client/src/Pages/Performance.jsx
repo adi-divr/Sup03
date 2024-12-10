@@ -16,7 +16,7 @@ const PerformancePage = () => {
   const fetchMonthlyDetails = async () => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/Performance?month=${month}&year=${year}`
+        `${process.env.REACT_APP_API_BASE_URL}/api/Performance?month=${month}&year=${year}`
       );
       const result = await response.json();
       setData({

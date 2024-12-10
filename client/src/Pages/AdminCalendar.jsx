@@ -19,7 +19,7 @@ const Calendar = () => {
   useEffect(() => {
     const fetchSlotsData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`);
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`);
         const data = await response.json();
         if (response.ok) {
           setSlotsData(data.slots); // Expected format: { "2024-12-05": 18, "2024-12-06": 10 }
@@ -104,7 +104,7 @@ const Calendar = () => {
         <div className="logo-new">
           <img src={logo} alt="Logo" width={150} height={150} />
         </div>
-        <h3>When are you joining us?</h3>
+        <h3>Slot Detailed Data</h3>
       </div>
       <div className="calendar-container-new">
         <div className="calendar-header-new">

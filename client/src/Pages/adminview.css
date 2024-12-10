@@ -5,32 +5,47 @@
   }
   
   .navbar-container {
-    background-color: #f5f5f5; /* Light background for the box */
-    border: 1px solid #ddd; /* Subtle border around the box */
-    border-radius: 10px; /* Rounded corners for the box */
-    padding: 15px;
+    /* background-color: #f5f5f5; */
+     border: 1px solid #ddd;  
+     border-radius: 10px; 
+    padding: 7px;
+    margin-bottom: 20px;
+    width: 100%; 
     margin-bottom: 20px;
   }
   
-  .navbar {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  .nav-button {
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .nav-button:hover {
-    background: #333;
-  }
+/* Ensure navbar buttons remain in a row on all screen sizes */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: nowrap; /* Prevent buttons from wrapping to the next line */
+}
+
+/* Make all buttons the same size */
+.nav-button {
+  background: #f5f5f5; 
+  color: black; 
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100px; 
+  text-align: center;
+}
+
+/* Add hover effect */
+.nav-button:hover {
+  background: #e0e0e0; /* Slightly darker background for hover */
+}
+
+/* Style for the clicked (active) button */
+.nav-button:active {
+  background: black;
+  color: white;
+}
+
   
   .header {
     display: flex;
@@ -62,7 +77,7 @@
   }
   
   .booking-card {
-    width: 60%; /* Property controlling card width */
+    width: 700px; /* Property controlling card width */
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 15px;
@@ -102,8 +117,9 @@
   }
   
   .next-button img {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
   }
   
   .error {
@@ -112,3 +128,52 @@
     margin-top: 20px;
   }
   
+  /* Mobile-specific styles */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 5px; /* Reduce padding for smaller screens */
+    margin-bottom: 10px;
+  }
+
+  .navbar {
+    gap: 10px; /* Reduce gap between buttons */
+  }
+
+  .nav-button {
+    padding: 8px 10px; /* Reduce padding inside buttons */
+    font-size: 14px; /* Decrease font size for buttons */
+    width: auto; /* Let buttons adjust width automatically */
+  }
+
+  .booking-card {
+    width: 90%; /* Make card width responsive to screen size */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .card-header {
+    flex-direction: column; /* Stack header items vertically */
+    align-items: flex-start; /* Align text to the left */
+  }
+
+  .card-details {
+    font-size: 12px; /* Reduce font size for details */
+    padding: 8px; /* Adjust padding */
+  }
+
+  .next-button img {
+    width: 40px; /* Reduce image size */
+    height: 40px;
+  }
+
+  h2 {
+    font-size: 20px; /* Decrease header font size */
+    margin-bottom: 15px;
+  }
+
+  .logo {
+    width: 60px; /* Reduce logo size */
+    height: 60px;
+    margin-bottom: 10px;
+  }
+}
+

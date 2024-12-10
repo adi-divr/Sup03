@@ -25,7 +25,7 @@ const ConfirmAdmin = () => {
 
       try {
         const response = await fetch(
-          `${API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(slotParam)}`
+          `${process.env.REACT_APP_API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(slotParam)}`
         );
 
         if (!response.ok) {
@@ -70,7 +70,7 @@ const ConfirmAdmin = () => {
     }));
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/Accepted`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Accepted`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

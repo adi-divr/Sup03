@@ -47,7 +47,7 @@ const AdminView = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/GetData`);
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetData`);
         console.log("Response Status:", response.status);
         const text = await response.text(); // Log raw response
         console.log("Raw Response:", text);
@@ -93,7 +93,16 @@ const AdminView = () => {
 //adminview > admin confirm
 //adminview can go to admincalendar
   return (
+
+    
     <div className="admin-container">
+
+     <div className="header">
+        <img src={logo} alt="Logo" className="logo" />
+      </div>
+
+
+      
       <div className="navbar-container">
         <div className="navbar">
         <button className="nav-button" onClick={() => handleNavigation("/?isadmin=true")}>
@@ -103,15 +112,12 @@ const AdminView = () => {
           Calendar
         </button>
         <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
-          Performance
+          Scorecard
         </button>
         </div>
       </div>
 
-      <div className="header">
-        <img src={logo} alt="Logo" className="logo" />
-        <h2>Manage Bookings</h2>
-      </div>
+      <h2>Manage Bookings</h2>
 
       {error ? (
         <p className="error">{error}</p>
@@ -120,8 +126,8 @@ const AdminView = () => {
           {bookings.map((booking, index) => (
             <div className="booking-card" key={index}>
               <div className="card-header">
-                <span>Total Slots: {booking.slot}</span>
-                <span>{booking.bookingDate}</span>
+                {/* <span>Total Slots: {booking.slot}</span> */}
+                <span>Slot Date: {booking.bookingDate}</span>
               </div>
               <div className="card-details">
                 <p>
