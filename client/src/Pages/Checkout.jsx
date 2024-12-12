@@ -1,8 +1,7 @@
 import React from "react";
 import "./checkout.css";
-import logo from "../../src/assets/logo.png"; // Adjust the path to your project's structure
-import imageQR from "../../src/assets/QR.png"; // Adjust the path to your project's structure
-
+import logo from "../../src/assets/logo.png";
+import imageQR from "../../src/assets/QR.png"; 
 const Checklast = () => {
   return (
     <div className="confirm-container1">

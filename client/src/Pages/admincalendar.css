@@ -1,97 +1,122 @@
-/* General Calendar Page */
 .calendar-page-new {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 20px;
-}
+    min-height: 100vh; 
+    box-sizing: border-box;
+  }
   
-.calendar-header-logo-new {
+  .calendar-header-logo-new {
     text-align: center;
     margin-bottom: 20px;
-}
+  }
   
-.logo-new img {
+  .logo-new img {
     width: 80px;
-    height: auto;
-}
+    max-width: 100%;
+  }
   
-.calendar-header-logo-new h3 {
+  .calendar-header-logo-new h3 {
     font-size: 20px;
     font-weight: bold;
     margin: 10px 0;
-}
+  }
   
-.calendar-container-new {
+  .calendar-container-new {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    padding: 20px; 
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
+    background: #fff;
+  }
   
-.calendar-header-new {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 10px 0;
-}
-  
-.month-navigation-new {
+  .calendar-header-new {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-}
+    margin-bottom: 20px;
+  }
   
-.month-navigation-new button {
+  .month-navigation-new {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .month-navigation-new button {
     background: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 50%;
     padding: 5px 10px;
-    cursor: pointer;
     font-size: 14px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
   
-.month-navigation-new button:hover {
+  .month-navigation-new button:hover {
     background-color: #ffcc66;
-}
+  }
   
-.month-navigation-new span {
+  .month-navigation-new span {
     font-size: 16px;
     font-weight: bold;
-}
+  }
   
-/* Calendar Grid */
-.calendar-grid-new {
+  .calendar-grid-new {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(7, 1fr); 
     gap: 10px;
-    margin-bottom: 20px;
-}
+  }
   
-.calendar-day-new {
+  .calendar-day-new {
+    background: white;
     border: none;
     padding: 10px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    background: white;
     transition: background 0.3s ease;
-}
+    margin-bottom: 20px; 
+  }
   
-.calendar-day-new:hover {
+  .calendar-day-new:hover {
     background: #ffcc66;
-}
+  }
   
-.slot-count-new {
+  .slot-count-new {
     font-size: 12px;
     color: blue;
     margin-top: 5px;
-}
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .calendar-container-new {
+      padding: 15px;
+      max-width: 90%; 
+    }
+  
+    .calendar-header-logo-new h3 {
+      font-size: 18px; 
+    }
+  
+    .month-navigation-new span {
+      font-size: 14px;
+    }
+  
+    .calendar-day-new {
+      font-size: 12px; 
+      padding: 8px;
+    }
+  
+    .calendar-grid-new {
+      gap: 5px; 
+    }
+  }
+  

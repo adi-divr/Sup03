@@ -1,9 +1,19 @@
+
+body{
+  display: flex;
+  
+}
+
+
 .container {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     width: 100%;
-    max-width: 340px; /* Adjusted to match the mobile screenshot */
+    max-width: 340px; 
     margin: 0 auto;
-    padding: 20px 15px; /* Reduced padding for mobile view */
-    text-align: center;
+    padding: 20px 15px; 
+    text-align: start;
     font-family: Arial, sans-serif;
     
   }
@@ -11,13 +21,15 @@
   img {
     display: block;
     margin: 0 auto 20px;
-    width: 60px; /* Adjusted logo size for mobile */
+    width: 60px; 
     height: auto;
   }
-  
+ 
+
+
   form {
     background: #f9f9f9;
-    padding: 20px 30px; /* Reduced padding for compact mobile layout */
+    padding: 20px 30px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -51,8 +63,8 @@
   
   .radio-group {
     display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    gap: 10px; /* Narrow gap for better spacing */
+    justify-content: flex-start; 
+    gap: 10px; 
     margin: 5px 0 15px;
   }
   
@@ -63,12 +75,12 @@
     gap: 5px;
   }
   .radio-group input[type="radio"] {
-    order: 1; /* Ensures the radio button appears after the text */
-    margin-left: 5px; /* Slight spacing to avoid overlap with text */
+    order: 1; 
+    margin-left: 5px; 
   }
   
   .radio-group label:first-child {
-    margin-right: 10px; /* Adds spacing between the Yes and No labels */
+    margin-right: 10px; 
   }
   
   form button {
@@ -91,29 +103,73 @@
     background-color: #333;
     
   }
+
+  .warning-message {
+    background-color: #fff; 
+    border: 1px solid #ddd; 
+    border-radius: 10px;
+    padding: 11px;
+    margin: 11px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   
-  /* Mobile-specific adjustments */
+  .warning-message p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .warning-text {
+    color: #d32f2f; 
+    font-weight: bold;
+    display: block; 
+    margin-bottom: 5px;
+  }
+  
+  .warning-description {
+    color: #000; 
+    font-size: 14px;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0 auto; 
+    width: 100%; 
+  }
+  
+  .logo img {
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 20px;
+  }
+  
+  
   @media (max-width: 480px) {
     .container {
-      max-width: 320px; /* Narrower width for smaller devices */
+      max-width: 320px;
     }
   
     img {
-      width: 50px; /* Adjusted logo size further for smaller screens */
+      width: 50px; 
     }
   
     form {
-      padding: 15px; /* Reduced form padding for better fit */
+      padding: 15px;
     }
   
     form input[type="text"],
     form input[type="email"],
     form button {
-      font-size: 13px; /* Slightly smaller text for compact view */
+      font-size: 13px; 
     }
   
     .radio-group {
-      gap: 10px; /* Reduced gap for narrow screens */
+      gap: 10px; 
     }
   }
   

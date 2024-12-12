@@ -1,8 +1,7 @@
 import React, { FormEvent, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // React Router
-import logo from "../../src/assets/logo.png"; // Adjust path as needed
+import logo from "../../src/assets/logo.png"; 
 import "./slotform.css";
-
 
 
 const Slotform = () => {
@@ -24,19 +23,16 @@ const Slotform = () => {
     e.preventDefault();
 
     const currentForm = { name, mail, number, weighData, ageData };
-    setFormData((prevFormData) => [...prevFormData, currentForm]); // Add current form data
+    setFormData((prevFormData) => [...prevFormData, currentForm]); 
 
     if (currentFormIndex + 1 < slots) {
-      // Move to next form
       setCurrentFormIndex(currentFormIndex + 1);
     } else {
-      // Save data and navigate to confirmation
       sessionStorage.setItem("formData", JSON.stringify([...formData, currentForm]));
       sessionStorage.setItem("slotAndDate", JSON.stringify({ selectedDate: selected, slots }));
       navigate("/confirmPage");
     }
 
-    // Reset fields
     setMail("");
     setMobile("");
     setName("");
@@ -52,8 +48,12 @@ const Slotform = () => {
 
   return (
     <div className="container">
-      <img src={logo} alt="Logo" width={100} height={100} />
-      <p><strong>TELL US MORE ABOUT YOURSELF</strong></p>
+<div className="logo">
+          <img src={logo} alt="Logo" width={150} height={150} />
+        </div>
+        <p className="centered-text">
+  <strong>TELL US MORE ABOUT YOURSELF</strong>
+</p>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
@@ -77,7 +77,7 @@ const Slotform = () => {
           required
         />
 
-        <label htmlFor="mobilenum">Mobile Number:</label>
+        <label htmlFor="mobilenum">Phone:</label>
         <input
           type="text"
           id="mobilenum"
@@ -86,7 +86,7 @@ const Slotform = () => {
           placeholder="Your Mobile number.."
           required
         />
-
+        <h3>Weight</h3>
         <p>Do you weigh below 100kg?</p>
         <div className="radio-group">
           <label>
@@ -110,7 +110,18 @@ const Slotform = () => {
             No
           </label>
         </div>
-
+        {weighData === "no" && (
+  <div className="warning-message">
+    <p>
+      <strong className="warning-text">Warning</strong>
+      <span className="warning-description">
+        Please note that paddling can be challenging for individuals over 100 kg.
+        If you're confident, we're happy to accommodate your booking.
+      </span>
+    </p>
+  </div>
+)}
+                <h3>Age</h3>
         <p>Are you over 18?</p>
         <div className="radio-group">
           <label>

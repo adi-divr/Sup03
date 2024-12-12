@@ -22,7 +22,7 @@ module.exports = async function Performance(req, res) {
 
         const sheets = google.sheets({ version: 'v4', auth });
 
-        const range = 'A2:F'; // Assuming data starts from row 2 and slot ID is column F (index 5)
+        const range = 'A2:F';
         const sheetDataResponse = await sheets.spreadsheets.values.get({
             spreadsheetId: process.env.GOOGLE_SHEET_ID2,
             range,
@@ -30,22 +30,19 @@ module.exports = async function Performance(req, res) {
 
         const rows = sheetDataResponse.data.values || [];
         let totalSlots = 0;
-        const uniqueSlotPayments = {}; // To track unique slot IDs and their payments
+        const uniqueSlotPayments = {}; 
 
         rows.forEach(row => {
-            const [ , , bookedDate, totalSlotsCount, payment, slotId] = row; // Extract required columns
+            const [ , , bookedDate, totalSlotsCount, payment, slotId] = row;
             if (bookedDate && bookedDate.startsWith(`${year}-${month.padStart(2, '0')}`)) {
-                // Summing total slots
                 totalSlots += parseInt(totalSlotsCount || '0', 10);
 
-                // Handling unique slot payments
                 if (slotId && !uniqueSlotPayments[slotId]) {
                     uniqueSlotPayments[slotId] = parseInt(payment || '0', 10);
                 }
             }
         });
 
-        // Calculate the total payment for unique slots
         const totalPayment = Object.values(uniqueSlotPayments).reduce((acc, payment) => acc + payment, 0);
 
         return res.status(200).json({

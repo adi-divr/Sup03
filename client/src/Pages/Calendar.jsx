@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // React Router for navigation
-import logo from "../../src/assets/logo.png"
+import { useNavigate } from "react-router-dom";
+import logo from "../../src/assets/logo.png";
 import "./calendar.css";
-
-
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
@@ -16,13 +14,13 @@ const Calendar = () => {
 
   const handleDateClick = (day) => {
     const date = new Date(currentYear, currentMonth, day);
-    const formattedDate = date.toLocaleDateString("en-CA"); // Format: YYYY-MM-DD
+    const formattedDate = date.toLocaleDateString("en-CA");
     navigate(`/slotbooking?selectedDate=${formattedDate}`);
   };
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
-      setCurrentMonth(11); // December
+      setCurrentMonth(11);
       setCurrentYear((prevYear) => prevYear - 1);
     } else {
       setCurrentMonth((prevMonth) => prevMonth - 1);
@@ -31,7 +29,7 @@ const Calendar = () => {
 
   const handleNextMonth = () => {
     if (currentMonth === 11) {
-      setCurrentMonth(0); // January
+      setCurrentMonth(0);
       setCurrentYear((prevYear) => prevYear + 1);
     } else {
       setCurrentMonth((prevMonth) => prevMonth + 1);

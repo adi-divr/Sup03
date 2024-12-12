@@ -24,13 +24,12 @@ module.exports = async function GetSlots(req, res) {
     });
 
     const rows = sheetDataResponse.data.values || [];
-    const slots = {}; // Object to store the slots data
+    const slots = {}; 
 
     rows.forEach((row) => {
-      const bookingDate = row[2]; // Assuming date is in column C (index 2)
-      const slotsCount = row[3]; // Assuming slots count is in column D (index 3)
+      const bookingDate = row[2]; 
+      const slotsCount = row[3]; 
 
-      // Ensure `month` is treated as a string
       const monthString = Array.isArray(month) ? month[0] : month;
 
       if (

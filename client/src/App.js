@@ -11,8 +11,9 @@ import AdminCalendar from "./Pages/AdminCalendar"; // Admin Calendar component
 import ConfirmAdmin from "./Pages/AdminConfirm";
 import AdminDataView from "./Pages/AdminCalendarValueView";
 import PerformancePage from "./Pages/Performance";
+import FirstHome from "./Pages/FirstHome"
 
-// Conditional routing logic based on URL query parameter
+
 function AppRoutes() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -31,10 +32,11 @@ function AppRoutes() {
     );
   }
 
-  // Render Calendar and other associated routes when not admin
+  //  not admin
   return (
     <Routes>
-      <Route path="/" element={<Calendar />} />
+      <Route path="/" element={<FirstHome />} />
+      <Route path="/calendar" element={<Calendar />} />
       <Route path="/slotbooking" element={<Slotbooking />} />
       <Route path="/slotform" element={<Slotform />} />
       <Route path="/confirmPage" element={<Confirm />} />
@@ -47,7 +49,7 @@ function App() {
   return (
     <div className="App">
       <Router >
-        <AppRoutes />
+         <AppRoutes /> 
       </Router>
     </div>
   );

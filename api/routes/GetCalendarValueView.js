@@ -11,7 +11,7 @@ module.exports =  async function GetCalendarValueView(req, res) {
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"), // Replace escaped newlines
+        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"), 
       },
       scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
     });
@@ -20,14 +20,14 @@ module.exports =  async function GetCalendarValueView(req, res) {
 
     const sheetDataResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID2,
-      range: "A2:F", // Adjust the range to include all required columns
+      range: "A2:F",
     });
 
     const rows = sheetDataResponse.data.values || [];
     const results = [];
 
     rows.forEach((row) => {
-      const [name, number, bookingDate] = row; // Adjust indices as per spreadsheet structure
+      const [name, number, bookingDate] = row; 
       if (bookingDate === date) {
         results.push({ name, number });
       }

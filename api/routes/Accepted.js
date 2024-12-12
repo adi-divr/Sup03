@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 
-const SLOT_LIMIT = 12; // Max slots per date
+const SLOT_LIMIT = 12; 
 
 module.exports = async function Accepted(req, res) {
   if (req.method !== 'POST') {
@@ -37,24 +37,21 @@ module.exports = async function Accepted(req, res) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Fetch existing data from the sheet
     const existingDataResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID2,
-      range: 'A1:F', // Assuming columns are Name, Number, Booking Date, Total Slots
+      range: 'A1:F',
     });
 
     const existingData = existingDataResponse.data.values || [];
     const bookingsPerDate = {};
 
-    // Skip the header row and calculate the total slots for each date
     existingData.slice(1).forEach((row) => {
-      const bookingDate = row[2]; // Assuming bookingDate is in the 3rd column (index 2)
+      const bookingDate = row[2]; 
       if (bookingDate) {
         bookingsPerDate[bookingDate] = (bookingsPerDate[bookingDate] || 0) + 1;
       }
     });
 
-    // Check if any of the incoming booking dates exceed the limit
     for (const booking of body) {
       const currentSlots = bookingsPerDate[booking.bookingDate] || 0;
       if (currentSlots + 1 > SLOT_LIMIT) {
@@ -64,12 +61,11 @@ module.exports = async function Accepted(req, res) {
       }
     }
 
-    // Map incoming data to the required format and append
     const values = body.map((item) => [
       item.name || '',
       item.number || '',
       item.bookingDate || '',
-      1, // Total slots (always 1 per row for this system)
+      1, 
       item.paymentMade || '',
       item.slotID || ''
     ]);

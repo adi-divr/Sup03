@@ -16,7 +16,6 @@ module.exports = async function GetData(req, res) {
 
         const sheets = google.sheets({ version: 'v4', auth });
 
-        // Desired range in the Google Sheet
         const range = 'Sheet1!A1:H';
 
         const response = await sheets.spreadsheets.values.get({
@@ -30,10 +29,9 @@ module.exports = async function GetData(req, res) {
             const groupedData = {};
 
             rows.forEach(row => {
-                const slot = row[5]; // Grouping by slot (6th column)
-
+                const slot = row[5]; 
                 if (!groupedData[slot]) {
-                    groupedData[slot] = [row]; // Initialize the group with the row
+                    groupedData[slot] = [row]; 
                 }
             });
 

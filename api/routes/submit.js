@@ -4,7 +4,6 @@ const { google } = require("googleapis");
 
 const router = express.Router();
 
-// POST route to handle data submission
 router.post("/", async (req, res) => {
   const { formData, slotAndDate } = req.body;
 
@@ -13,7 +12,6 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    // Authenticate with Google Sheets API
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
@@ -24,39 +22,35 @@ router.post("/", async (req, res) => {
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    // Get the current date in ddmm format
     const date = new Date();
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const dateFormatted = `${day}${month}`;
 
-    // Fetch existing data to calculate the next slot number
     const sheetId = process.env.GOOGLE_SHEET_ID;
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: "A:A", // Column A holds the slot values
+      range: "A:A", 
     });
 
     const existingData = response.data.values;
     const nextSlotNumber = existingData ? existingData.length + 1 : 1;
     const slot = `slot${nextSlotNumber}`;
 
-    // Combine formData and slotAndDate into the required format
     const values = formData.map((item) => [
       item.name,
       item.mail,
       item.number,
       item.ageData,
       item.weighData,
-      slot, // Include the dynamically calculated slot
-      dateFormatted, // Include the formatted date
-      slotAndDate.selectedDate || "", // Add `selectedDate` from `slotAndDate`
+      slot, 
+      dateFormatted, 
+      slotAndDate.selectedDate || "",
     ]);
 
-    // Append the data to Google Sheets
     await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: "A1", // Adjust the range as needed
+      range: "A1", 
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values,

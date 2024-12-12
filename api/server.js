@@ -16,13 +16,15 @@ const Performance = require("./routes/Performance")
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+//env change in both front and back
+//cors change in backend
+//app serve static open it
 
 // const corsOptions = {
-//   origin: ['https://adi-divr.github.io'], // Allow only the GitHub Pages origin
+//   origin: 'https://sup-kochi.azurewebsites.net/', // Allow only the GitHub Pages origin
 //   methods: ['GET', 'POST'], // Allow GET and POST requests
 //   credentials: true,
-// }; 
+// }; corsOptions
 
 app.use(cors());
 
@@ -43,11 +45,12 @@ app.use("/api/GetCalendarValueView", GetCalendarValueView);
 app.use("/api/Performance", Performance)
 
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
+// console.log('Serving static files from:', path.join(__dirname, 'build'));
 
 // Start the server
 app.listen(PORT, () => {

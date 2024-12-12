@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import logo from "../../src/assets/logo.png"; // Adjust the path if necessary
+import logo from "../../src/assets/logo.png"; 
 import "./adminconfirm.css";
-const API_BASE_URL ="https://9f7a-2406-7400-bd-f8e9-4ae-8774-746a-966.ngrok-free.app"
 
 
 
@@ -11,11 +10,9 @@ const ConfirmAdmin = () => {
   const [error, setError] = useState("");
   const location = useLocation();
 
-  // Extract the `slot` parameter from the URL
   const searchParams = new URLSearchParams(location.search);
   const slotParam = searchParams.get("slot");
 
-  // Fetch data when component mounts
   useEffect(() => {
     const fetchData = async () => {
       if (!slotParam) {
@@ -25,7 +22,9 @@ const ConfirmAdmin = () => {
 
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(slotParam)}`
+          `${process.env.REACT_APP_API_BASE_URL}/api/GetFilteredData?slotKey=${encodeURIComponent(
+            slotParam
+          )}`
         );
 
         if (!response.ok) {
@@ -70,13 +69,16 @@ const ConfirmAdmin = () => {
     }));
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Accepted`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/Accepted`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bookingData),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -89,7 +91,6 @@ const ConfirmAdmin = () => {
       console.error("Error submitting data:", error);
       alert("Failed to submit booking data. Please try again.");
     }
-    console.log('hi')
   };
 
   const handleReject = () => {
@@ -99,10 +100,12 @@ const ConfirmAdmin = () => {
   return (
     <div className="confirmation-container">
       <header className="confirmation-header">
-        <img src={logo} alt="SUP IN KOCHI Logo" className="logo" />
+        <div className="logo">
+          <img src={logo} alt="Logo" width={150} height={150} />
+        </div>
       </header>
       <main className="confirmation-main">
-        <h1 className="confirmation-title">Confirmation Portal</h1>
+        <p className="confirmation-title">Confirmation Portal</p>
         <div className="slot-info">
           <span className="total-slots">
             Total Slots: <strong>{bookings.length}</strong>
@@ -113,26 +116,28 @@ const ConfirmAdmin = () => {
           {error ? (
             <p className="error">{error}</p>
           ) : bookings.length > 0 ? (
-            bookings.map((slot, index) => (
-              <div key={index} className="slot-card">
-                <p>
-                  <strong>Name:</strong> {slot.name}
-                </p>
-                <p>
-                  <strong>Weight:</strong>{" "}
-                  <span
-                    className={`weight ${
-                      slot.weight === "above 100" ? "red-text" : "blue-text"
-                    }`}
-                  >
-                    {slot.weight}
-                  </span>
-                </p>
-                <p>
-                  <strong>Age:</strong> <span>{slot.age}</span>
-                </p>
-              </div>
-            ))
+            <div className="slot-card">
+              {bookings.map((slot, index) => (
+                <div key={index} className="slot-details">
+                  <div className="detail-item">
+                    <strong>Name:</strong> {slot.name}
+                  </div>
+                  <div className="detail-item">
+                    <strong>Weight:</strong>{" "}
+                    <span
+                      className={`weight ${
+                        slot.weight === "above 100" ? "red-text" : "blue-text"
+                      }`}
+                    >
+                      {slot.weight}
+                    </span>
+                  </div>
+                  <div className="detail-item">
+                    <strong>Age:</strong> {slot.age}
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
             <p>No bookings available.</p>
           )}
@@ -149,5 +154,4 @@ const ConfirmAdmin = () => {
     </div>
   );
 };
-
 export default ConfirmAdmin;

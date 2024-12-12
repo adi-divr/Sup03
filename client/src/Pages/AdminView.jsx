@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./adminview.css";
-import logo from "../../src/assets/logo.png"; // Update the path as per your project structure
-import nextButton from "../../src/assets/next.png"; // Update the path as per your project structure
-import { useNavigate } from "react-router-dom"; // For navigation in React
-const API_BASE_URL ="https://9f7a-2406-7400-bd-f8e9-4ae-8774-746a-966.ngrok-free.app"
+import logo from "../../src/assets/logo.png";
+import nextButton from "../../src/assets/next.png"; 
+import { useNavigate } from "react-router-dom"; 
 
 
 const AdminView = () => {
@@ -56,7 +55,6 @@ const AdminView = () => {
           throw new Error(`Failed to fetch data: ${response.status}`);
         }
   
-        // Try parsing the raw text as JSON
         const result = JSON.parse(text); 
         console.log("Parsed Data:", result);
   
@@ -97,9 +95,9 @@ const AdminView = () => {
     
     <div className="admin-container">
 
-     <div className="header">
-        <img src={logo} alt="Logo" className="logo" />
-      </div>
+<div className="logo">
+          <img src={logo} alt="Logo" width={150} height={150} />
+        </div>
 
 
       
@@ -117,7 +115,7 @@ const AdminView = () => {
         </div>
       </div>
 
-      <h2>Manage Bookings</h2>
+      <p>Manage Bookings</p>
 
       {error ? (
         <p className="error">{error}</p>

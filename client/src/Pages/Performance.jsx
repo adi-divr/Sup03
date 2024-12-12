@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './performance.css';
 import logo from "../../src/assets/logo.png";
-const API_BASE_URL ="https://9f7a-2406-7400-bd-f8e9-4ae-8774-746a-966.ngrok-free.app"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +12,7 @@ const PerformancePage = () => {
   });
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
+  const navigate = useNavigate();
 
   const fetchMonthlyDetails = async () => {
     try {
@@ -47,17 +48,27 @@ const PerformancePage = () => {
   useEffect(() => {
     fetchMonthlyDetails();
   }, [month, year]);
-
+  const handleNavigation = (route) => {
+    navigate(route);
+  };
   return (
     <div className="performance-page">
-      <header className="header">
-        <img src={logo} alt="Logo" className="logo" />
-      </header>
-      {/* <div className="tabs">
-        <button className="tab">Manage</button>
-        <button className="tab">Calendar</button>
-        <button className="tab active">Performance</button>
-      </div> */}
+      <div className="logo-new">
+          <img src={logo} alt="Logo" />
+        </div>
+      <div className="navbar-container">
+        <div className="navbar">
+        <button className="nav-button" onClick={() => handleNavigation("/?isadmin=true")}>
+          Manage
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>
+          Calendar
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
+          Scorecard
+        </button>
+        </div>
+      </div>
       <h2 className="section-title">WEEKLY SCORECARD</h2>
       <div className="scorecard">
         <div className="month-navigation">

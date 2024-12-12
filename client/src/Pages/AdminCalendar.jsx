@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // React Router for navigation
+import { useNavigate } from "react-router-dom";
 import "./admincalendar.css";
-import logo from "../../src/assets/logo.png"; // Adjust path based on your structure
-const API_BASE_URL ="https://9f7a-2406-7400-bd-f8e9-4ae-8774-746a-966.ngrok-free.app"
-
+import logo from "../../src/assets/logo.png";
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [slotsData, setSlotsData] = useState({}); // Store slots for each date
-  const navigate = useNavigate(); // React Router navigation hook
+  const [slotsData, setSlotsData] = useState({});
+  const navigate = useNavigate();
 
   const daysInMonth = (month, year) => {
-    return new Date(year, month + 1, 0).getDate(); // Returns the last day of the month
+    return new Date(year, month + 1, 0).getDate();
   };
 
-  // Fetch slots data from the server  
   useEffect(() => {
     const fetchSlotsData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/GetCalendarValue?month=${currentMonth + 1}&year=${currentYear}`
+        );
         const data = await response.json();
         if (response.ok) {
-          setSlotsData(data.slots); // Expected format: { "2024-12-05": 18, "2024-12-06": 10 }
+          setSlotsData(data.slots || {});
         } else {
           console.error("Failed to fetch slots:", data.message);
         }
@@ -36,14 +35,12 @@ const Calendar = () => {
 
   const handleDateClick = (day) => {
     const formattedDate = `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    //navigate(`/adminCalendarView?date=${formattedDate}`); // Navigate to the target route
     navigate(`/admincalendarvalueview?date=${formattedDate}&isadmin=true`);
-    console.log('hi')  
-};
+  };
 
   const handlePreviousMonth = () => {
     if (currentMonth === 0) {
-      setCurrentMonth(11); // December
+      setCurrentMonth(11);
       setCurrentYear((prevYear) => prevYear - 1);
     } else {
       setCurrentMonth((prevMonth) => prevMonth - 1);
@@ -52,7 +49,7 @@ const Calendar = () => {
 
   const handleNextMonth = () => {
     if (currentMonth === 11) {
-      setCurrentMonth(0); // January
+      setCurrentMonth(0);
       setCurrentYear((prevYear) => prevYear + 1);
     } else {
       setCurrentMonth((prevMonth) => prevMonth + 1);
@@ -73,7 +70,9 @@ const Calendar = () => {
     "November",
     "December",
   ];
-
+  const handleNavigation = (route) => {
+    navigate(route);
+  };
   const renderCalendar = () => {
     const days = Array.from(
       { length: daysInMonth(currentMonth, currentYear) },
@@ -89,7 +88,6 @@ const Calendar = () => {
           key={day}
           className="calendar-day-new"
           onClick={() => handleDateClick(day)}
-          style={{ background: "white" }}
         >
           {day}
           <div className="slot-count-new">{slots > 0 ? slots : ""}</div>
@@ -102,8 +100,21 @@ const Calendar = () => {
     <div className="calendar-page-new">
       <div className="calendar-header-logo-new">
         <div className="logo-new">
-          <img src={logo} alt="Logo" width={150} height={150} />
+          <img src={logo} alt="Logo" />
         </div>
+        <div className="navbar-container">
+        <div className="navbar">
+        <button className="nav-button" onClick={() => handleNavigation("/?isadmin=true")}>
+          Manage
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>
+          Calendar
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
+          Scorecard
+        </button>
+        </div>
+      </div>
         <h3>Slot Detailed Data</h3>
       </div>
       <div className="calendar-container-new">
