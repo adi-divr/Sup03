@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 
-const SLOT_LIMIT = 12; 
+const SLOT_LIMIT = 12;
 
 module.exports = async function Accepted(req, res) {
   if (req.method !== 'POST') {
@@ -30,13 +30,14 @@ module.exports = async function Accepted(req, res) {
     const auth = new google.auth.GoogleAuth({
       credentials: {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\n/g, '\n'),
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
 
+    // Fetch existing data from the sheet
     const existingDataResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID2,
       range: 'A1:F',
@@ -45,13 +46,15 @@ module.exports = async function Accepted(req, res) {
     const existingData = existingDataResponse.data.values || [];
     const bookingsPerDate = {};
 
+    // Process existing data into key-value pairs by booking date
     existingData.slice(1).forEach((row) => {
-      const bookingDate = row[2]; 
+      const bookingDate = row[2]; // Booking Date column
       if (bookingDate) {
         bookingsPerDate[bookingDate] = (bookingsPerDate[bookingDate] || 0) + 1;
       }
     });
 
+    // Validate the new bookings against the slot limit
     for (const booking of body) {
       const currentSlots = bookingsPerDate[booking.bookingDate] || 0;
       if (currentSlots + 1 > SLOT_LIMIT) {
@@ -61,15 +64,17 @@ module.exports = async function Accepted(req, res) {
       }
     }
 
+    // Prepare values for appending to the sheet
     const values = body.map((item) => [
       item.name || '',
       item.number || '',
       item.bookingDate || '',
-      1, 
+      1, // Total number of slots always 1 for a new booking
       item.paymentMade || '',
-      item.slotID || ''
+      item.slotID || '',
     ]);
 
+    // Append the new values to the sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID2,
       range: 'A1',

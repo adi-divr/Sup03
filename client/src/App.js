@@ -12,7 +12,7 @@ import ConfirmAdmin from "./Pages/AdminConfirm";
 import AdminDataView from "./Pages/AdminCalendarValueView";
 import PerformancePage from "./Pages/Performance";
 import FirstHome from "./Pages/FirstHome"
-
+import LoginPage from "./Pages/Login";
 
 function AppRoutes() {
   const location = useLocation();
@@ -23,7 +23,8 @@ function AppRoutes() {
     // Render AdminView and AdminCalendar for admin
     return (
       <Routes>
-        <Route path="/" element={<AdminView />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/adminview" element={<AdminView />} />
         <Route path="/adminCalendar" element={<AdminCalendar />} />
         <Route path="/admincalendarvalueview" element={<AdminDataView />} />
         <Route path="/performance" element={<PerformancePage />} />

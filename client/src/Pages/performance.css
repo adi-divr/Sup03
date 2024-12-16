@@ -1,98 +1,151 @@
-.performance-page {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    color: #333;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .back-button {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .logo {
-    height: 50px;
-    object-fit: contain;
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
-  }
-  
-  .tab {
-    padding: 10px 20px;
-    border: none;
-    background-color: #f4f4f4;
-    cursor: pointer;
-  }
-  
-  .tab.active {
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-  }
-  
-  .section-title {
+
+  .weekly-scorecard {
     text-align: center;
-    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
   }
-  
-  .scorecard {
-    background-color: white;
+ 
+  .month-selector-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #f5c542; 
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    text-align: center;
-  }
-  
-  .month-navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:#f5c542
+    }
+  
+  .month-selector {
+    display: flex;
+    align-items: center;
   }
   
-  .month-navigation button {
-    background: none;
+  .month-selector button {
+    background-color: #f5c542;
     border: none;
-    font-size: 18px;
+    padding: 10px 20px;
     cursor: pointer;
-  }
-  
-  .month-year {
     font-weight: bold;
-    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 11px;
   }
   
-  .stats {
+  .month-selector span {
+    font-size: 1.5em;
+    margin: 0 15px;
+  }
+  
+  .weekly-data {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
+    align-items: center;
   }
   
-  .label {
-    font-size: 14px;
-    color: #888;
+  .week-card {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    width: 400px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
   
-  .value {
-    font-size: 18px;
+  .week-card h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
     font-weight: bold;
+  }
+  
+  .card-content p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 1.1em;
   }
   
   .value.accepted {
     color: green;
+    font-weight: bold;
+  }
+  
+  .value.rejected {
+    color: red;
+    font-weight: bold;
   }
   
   .value.revenue {
     color: blue;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-container {
+      display: flex;
+      flex-direction: column; /* Stack navbar items vertically */
+      align-items: center; /* Center-align buttons */
+      gap: 10px; /* Add spacing between buttons */
+      padding: 10px 0;
+    }
+  
+    .navbar {
+      display: flex;
+      flex-wrap: wrap; /* Allow buttons to wrap if needed */
+      justify-content: center; /* Center-align buttons */
+      gap: 10px;
+    }
+  
+    .nav-button {
+      font-size: 0.9em; /* Slightly smaller font size for mobile */
+      padding: 8px 15px; /* Adjust padding for smaller buttons */
+    }
+  
+    .month-selector-container {
+      width: 90%; /* Fit the container within the mobile screen */
+      padding: 15px;
+      margin: 0 auto 20px auto; /* Center the container with auto margins */
+      box-sizing: border-box;
+    }
+  
+    .month-selector {
+      display: flex;
+      justify-content: space-between; /* Keep the same layout as desktop */
+      align-items: center;
+    }
+  
+    .month-selector span {
+      font-size: 1.2em; /* Slightly reduce the font size */
+    }
+  
+    .weekly-data {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center; /* Center-align the cards */
+      width: 100%; /* Ensure the content stretches fully */
+    }
+  
+    .week-card {
+      width: 90%; /* Reduce width to fit on smaller screens */
+      padding: 20px; /* Adjust padding */
+      box-sizing: border-box; /* Include padding and borders in width */
+    }
+  
+    .week-card h3 {
+      font-size: 1em; /* Adjust font size for mobile readability */
+      margin-bottom: 10px;
+    }
+  
+    .card-content p {
+      font-size: 0.9em; /* Slightly smaller font for mobile */
+      justify-content: space-between; /* Ensure the same alignment */
+    }
+  
+    .value {
+      font-size: 1em; /* Maintain the bold look */
+    }
   }
   

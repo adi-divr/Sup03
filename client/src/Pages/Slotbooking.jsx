@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import logo from "../../src/assets/logo.png"; // Adjust the path as needed
+import logo from "../../src/assets/logo.png"; 
 import "./slotbooking.css";
 
 

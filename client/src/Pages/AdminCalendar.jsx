@@ -104,7 +104,7 @@ const Calendar = () => {
         </div>
         <div className="navbar-container">
         <div className="navbar">
-        <button className="nav-button" onClick={() => handleNavigation("/?isadmin=true")}>
+        <button className="nav-button" onClick={() => handleNavigation("/adminview?isadmin=true")}>
           Manage
         </button>
         <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>

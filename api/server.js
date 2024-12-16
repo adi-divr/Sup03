@@ -11,7 +11,7 @@ const GetFilteredData = require("./routes/GetFilteredData")
 const Accepted = require("./routes/Accepted")
 const GetCalendarValueView = require("./routes/GetCalendarValueView")
 const Performance = require("./routes/Performance")
-
+const login = require("./routes/Login")
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -20,17 +20,17 @@ const PORT = process.env.PORT || 5000;
 //cors change in backend
 //app serve static open it
 
-// const corsOptions = {
-//   origin: 'https://sup-kochi.azurewebsites.net/', // Allow only the GitHub Pages origin
-//   methods: ['GET', 'POST'], // Allow GET and POST requests
-//   credentials: true,
-// }; corsOptions
+const corsOptions = {
+  origin: 'https://sup-kochi.azurewebsites.net/', // Allow only the GitHub Pages origin
+  methods: ['GET', 'POST'], // Allow GET and POST requests
+  credentials: true,
+}; 
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 // Middleware
-app.use(express.json()); // Express's built-in JSON parser
+app.use(express.json()); 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
@@ -43,13 +43,13 @@ app.use("/api/GetFilteredData", GetFilteredData); //adminconfirm
 app.use("/api/Accepted", Accepted);  //adminconfirm
 app.use("/api/GetCalendarValueView", GetCalendarValueView);  
 app.use("/api/Performance", Performance)
+app.use("/api/login", login)
 
+ app.use(express.static(path.join(__dirname, 'build')));
 
-// app.use(express.static(path.join(__dirname, 'build')));
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+ app.get('*', (req, res) => {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+ });
 // console.log('Serving static files from:', path.join(__dirname, 'build'));
 
 // Start the server

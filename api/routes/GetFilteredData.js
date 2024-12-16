@@ -10,7 +10,7 @@ module.exports = async function GetFilteredData(req, res) {
     if (!slotKey) {
         return res.status(400).json({ message: 'slotKey is required in the query params' });
     }
-    console.log("Slot Key:", slotKey);
+    
 
     try {
         const auth = new google.auth.GoogleAuth({
@@ -31,7 +31,7 @@ module.exports = async function GetFilteredData(req, res) {
         });
 
         const rows = response.data.values;
-
+        console.log(rows);
         if (!rows || rows.length <= 1) {
             return res.status(404).json({ message: 'No data found' });
         }
@@ -52,7 +52,6 @@ module.exports = async function GetFilteredData(req, res) {
         }
 
         const result = [headers, ...filteredRows];
-        console.log(result);
         return res.status(200).json({ data: result });
     } catch (error) {
         console.error("Error:", error);

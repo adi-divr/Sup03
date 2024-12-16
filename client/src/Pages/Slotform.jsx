@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import React, {  useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // React Router
 import logo from "../../src/assets/logo.png"; 
 import "./slotform.css";
