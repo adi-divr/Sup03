@@ -2,6 +2,7 @@
 body{
   display: flex;
   
+  
 }
 
 
@@ -9,12 +10,10 @@ body{
     justify-content: center;
     align-items: center;
     align-content: center;
-    width: 100%;
     max-width: 340px; 
     margin: 0 auto;
     padding: 20px 15px; 
     text-align: start;
-    font-family: Arial, sans-serif;
     
   }
   
@@ -32,14 +31,13 @@ body{
     padding: 20px 30px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 300px;
   }
   
   form label {
     display: block;
     margin: 10px 0 5px;
     text-align: left;
-    font-weight: bold;
     font-size: 14px;
   }
   
@@ -57,7 +55,6 @@ body{
   
   form p {
     margin: 10px 0;
-    font-weight: bold;
     text-align: left;
   }
   
@@ -108,7 +105,7 @@ body{
     background-color: #fff; 
     border: 1px solid #ddd; 
     border-radius: 10px;
-    padding: 11px;
+    padding: 7px;
     margin: 11px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }

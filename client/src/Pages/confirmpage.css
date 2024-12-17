@@ -1,7 +1,6 @@
 
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
     background-color: #fff;
     display: flex;
     justify-content: center;
@@ -12,7 +11,7 @@ body {
 
 .confirm-container {
     text-align: center;
-    padding: 10px;
+    
 }
 
 .logo-container {
@@ -34,30 +33,30 @@ body {
     flex-direction: column;
     justify-content: space-between;
     text-align: left;
-    width: 320px; 
+    width: 720px; 
     height: 280px;
     margin-top: 20px;
     position: relative;
 }
-
-.summary-card h3 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.summary-card p {
-    font-size: 16px;
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-}
-
 .price {
     color: #32c671;
     font-weight: bold;
 }
-
+.summary-card h3 {
+    text-align: center; 
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.summary-card p {
+    display: flex;
+    justify-content: space-between ; 
+    align-items: center;
+    margin: 10px 0; 
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between
+}
 .confirm-btn {
     background-color: black;
     color: white;
@@ -79,11 +78,11 @@ body {
 
 @media screen and (max-width: 480px) {
     .summary-card {
-        width: 90%;
-        height: 300px; 
+        width: 250px; 
+        height: auto; 
     }
 
     .confirm-btn {
-        width: 95%; 
+        width: 80%; 
     }
 }

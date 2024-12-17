@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
 }
 
@@ -103,7 +103,6 @@ body {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Carousel Buttons */
 .carousel-Home-button {
   position: absolute;
   top: 50%;

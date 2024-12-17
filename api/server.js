@@ -12,6 +12,9 @@ const Accepted = require("./routes/Accepted")
 const GetCalendarValueView = require("./routes/GetCalendarValueView")
 const Performance = require("./routes/Performance")
 const login = require("./routes/Login")
+const Reject = require("./routes/Rejected")
+
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,15 +29,15 @@ const corsOptions = {
   credentials: true,
 }; 
 
-app.use(cors(corsOptions));
+ app.use(cors(corsOptions));
 
 
 // Middleware
 app.use(express.json()); 
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`${req.method} ${req.url}`);
+//   next();
+// });
 // Routes
 app.use("/api/submit", submitRoute); // Attach submit API    adminview uses this
 app.use("/api/GetData", GetData); // Attach another API       adminview 
@@ -44,12 +47,13 @@ app.use("/api/Accepted", Accepted);  //adminconfirm
 app.use("/api/GetCalendarValueView", GetCalendarValueView);  
 app.use("/api/Performance", Performance)
 app.use("/api/login", login)
+app.use("/api/reject", Reject)
 
  app.use(express.static(path.join(__dirname, 'build')));
 
- app.get('*', (req, res) => {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
- });
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 // console.log('Serving static files from:', path.join(__dirname, 'build'));
 
 // Start the server

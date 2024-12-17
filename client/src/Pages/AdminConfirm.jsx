@@ -93,9 +93,40 @@ const ConfirmAdmin = () => {
     }
   };
 
-  const handleReject = () => {
-    console.log("Rejected bookings for slot:", slotParam);
+
+  const handleReject = async () => {
+    console.log("Rejecting bookings for slot:", slotParam);
+  
+    if (!slotParam) {
+      alert("Slot parameter is missing.");
+      return;
+    }
+  
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/api/reject?slot=${encodeURIComponent(slotParam)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message}`);
+        return;
+      }
+  
+      alert(`Booking for slot ${slotParam} rejected successfully!`);
+    } catch (error) {
+      console.error("Error rejecting booking:", error);
+      alert("Failed to reject booking. Please try again.");
+    }
   };
+
+
 
   return (
     <div className="confirmation-container">

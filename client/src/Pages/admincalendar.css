@@ -95,7 +95,6 @@
     margin-top: 5px;
   }
   
-  /* Mobile Responsiveness */
   @media (max-width: 768px) {
     .calendar-container-new {
       padding: 15px;

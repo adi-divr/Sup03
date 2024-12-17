@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Formevent,useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // For navigation
 import logo from "../../src/assets/logo.png"; // Adjust path as needed
 import "./confirmpage.css";
@@ -66,16 +66,16 @@ const Confirm = () => {
       <div className="summary-card">
         <h3>Booking Summary</h3>
         <p>
-          <strong>Name:</strong> {firstName}
+         <strong> Name: </strong>{firstName}
         </p>
         <p>
-          <strong>Slots:</strong> {slots || 0}
+        <strong> Slots:</strong> {slots || 0}
         </p>
         <p>
-          <strong>Date:</strong> {selectedDate || "N/A"}
+        <strong> Date: </strong>{selectedDate || "N/A"}
         </p>
         <p>
-          <strong>Amount:</strong>{" "}
+        <strong> Amount:{" "}</strong>
           <span className="price">{price} INR</span>
         </p>
         <button className="confirm-btn" onClick={handleClick}>

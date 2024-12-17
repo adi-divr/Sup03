@@ -113,18 +113,19 @@ const PerformancePage = () => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Performance?month=${month}&year=${year}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.acceptedSlots && data.payments) {
+        if (data.acceptedSlots && data.rejectedSlots && data.payments) {
           const formattedData = data.acceptedSlots.map((slots, index) => ({
             week: `WEEK ${index + 1}`,
             acceptedSlots: slots,
-            rejected: "N/A", // Rejected slots set to N/A
-            totalRevenue: data.payments[index],
+            rejected: data.rejectedSlots[index] || 0, // Add rejected slots
+            totalRevenue: data.payments[index] || 0,
           }));
           setWeeklyData(formattedData);
         }
       })
       .catch((error) => console.error('Error fetching weekly data:', error));
   }, [month, year]);
+  
 
   const handlePrevMonth = () => {
     if (month === 1) {
