@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import "./login.css";
 import backgroundImage from "../../src/assets/backg.png"; 
 import { useNavigate } from "react-router-dom"; 
+import { useAuth } from "../Context/Authcontext";
 
 
 const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
+
 
   const constantUsername = "sarath"; 
 
   const handleLogin = async (e) => {
+    
     e.preventDefault();
+    login();
 
     try {
       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/login`, {

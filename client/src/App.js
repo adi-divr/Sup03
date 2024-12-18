@@ -13,6 +13,9 @@ import AdminDataView from "./Pages/AdminCalendarValueView";
 import PerformancePage from "./Pages/Performance";
 import FirstHome from "./Pages/FirstHome"
 import LoginPage from "./Pages/Login";
+import { AuthProvider } from "./Context/Authcontext";
+import PrivateRoute from "./Context/PrivateRoute";
+
 
 function AppRoutes() {
   const location = useLocation();
@@ -24,11 +27,11 @@ function AppRoutes() {
     return (
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/adminview" element={<AdminView />} />
-        <Route path="/adminCalendar" element={<AdminCalendar />} />
-        <Route path="/admincalendarvalueview" element={<AdminDataView />} />
-        <Route path="/performance" element={<PerformancePage />} />
-        <Route path="/adminConfirm" element={<ConfirmAdmin />} />
+        <Route path="/adminview" element={ <PrivateRoute><AdminView /></PrivateRoute>} />
+        <Route path="/adminCalendar" element={<PrivateRoute><AdminCalendar /></PrivateRoute>} />
+        <Route path="/admincalendarvalueview" element={<PrivateRoute><AdminDataView /></PrivateRoute>} />
+        <Route path="/performance" element={<PrivateRoute><PerformancePage /></PrivateRoute>} />
+        <Route path="/adminConfirm" element={<PrivateRoute><ConfirmAdmin /></PrivateRoute>} />
       </Routes>
     );
   }
@@ -49,9 +52,11 @@ function AppRoutes() {
 function App() {
   return (
     <div className="App">
+       <AuthProvider>
       <Router >
          <AppRoutes /> 
       </Router>
+      </AuthProvider>
     </div>
   );
 }

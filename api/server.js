@@ -34,11 +34,11 @@ const corsOptions = {
 
 // Middleware
 app.use(express.json()); 
-// app.use((req, res, next) => {
-//   console.log(`${req.method} ${req.url}`);
-//   next();
-// });
-// Routes
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+Routes
 app.use("/api/submit", submitRoute); // Attach submit API    adminview uses this
 app.use("/api/GetData", GetData); // Attach another API       adminview 
 app.use("/api/GetCalendarValue", GetCalendarValue);  //admincalendar

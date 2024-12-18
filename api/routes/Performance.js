@@ -219,7 +219,7 @@ module.exports = async function Performance(req, res) {
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
         private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
       },
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'], 
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
@@ -229,23 +229,46 @@ module.exports = async function Performance(req, res) {
       sheets.spreadsheets.values.get({ spreadsheetId: process.env.GOOGLE_SHEET_ID2, range: 'A1:F' }),
     ]);
 
-    const sheet1 = sheet1Data.data.values; 
-    const sheet2 = sheet2Data.data.values; 
+    const sheet1 = sheet1Data.data.values; // Rejected data
+    const sheet2 = sheet2Data.data.values; // Accepted and payment data
 
     if (!sheet1 || !sheet2) return res.status(404).json({ message: 'No data found in the sheets' });
 
+    const sheet1Headers = sheet1[0];
     const sheet2Headers = sheet2[0];
 
+    const sheet1Rows = sheet1.slice(1);
     const sheet2Rows = sheet2.slice(1);
+
+    const sheet1DateIndex = sheet1Headers.indexOf('Date');
+    const sheet1StatusIndex = sheet1Headers.indexOf('Status');
+    const sheet1SlotIndex = sheet1Headers.indexOf('SLOT');
 
     const sheet2DateIndex = sheet2Headers.indexOf('Booked Date');
     const sheet2SlotIDIndex = sheet2Headers.indexOf('SLOTID');
     const sheet2PaymentIndex = sheet2Headers.indexOf('Total Payment');
 
     const acceptedSlots = [0, 0, 0, 0];
+    const rejectedSlots = [0, 0, 0, 0];
     const payments = [0, 0, 0, 0];
 
     const weekSlotIDs = Array(4).fill(null).map(() => new Set());
+
+    sheet1Rows.forEach((row) => {
+      const dateStr = row[sheet1DateIndex];
+      const status = row[sheet1StatusIndex];
+      const slot = row[sheet1SlotIndex];
+
+      if (!dateStr || !status || !slot) return;
+
+      const date = new Date(dateStr);
+      if (date.getFullYear() === parseInt(year) && date.getMonth() + 1 === parseInt(month)) {
+        const week = Math.floor((date.getDate() - 1) / 7);
+        if (status === 'R') {
+          rejectedSlots[week] += 1; // Increment rejected count
+        }
+      }
+    });
 
     sheet2Rows.forEach((row) => {
       const dateStr = row[sheet2DateIndex];
@@ -260,15 +283,15 @@ module.exports = async function Performance(req, res) {
 
         if (!weekSlotIDs[week].has(slotID)) {
           weekSlotIDs[week].add(slotID);
-          acceptedSlots[week] += 1; 
-          payments[week] += payment; 
+          acceptedSlots[week] += 1; // Increment accepted slots
+          payments[week] += payment; // Add the payment
         }
       }
     });
 
     return res.status(200).json({
       acceptedSlots,
-      rejectedSlots: [0, 0, 0, 0], 
+      rejectedSlots,
       payments,
     });
   } catch (error) {

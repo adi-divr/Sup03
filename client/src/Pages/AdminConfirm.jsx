@@ -30,17 +30,19 @@ const ConfirmAdmin = () => {
         if (!response.ok) {
           throw new Error(`Failed to fetch data: ${response.statusText}`);
         }
-
+         
         const result = await response.json();
+        console.log(result)
         if (result.data) {
           setBookings(
             result.data.slice(1).map((row) => ({
               name: row[0] || "N/A",
-              weight: row[3] || "N/A",
-              age: row[4] || "N/A",
+              weight: row[4] || "N/A",
+              age: row[3] || "N/A",
               slot: row[5] || "N/A",
               number: row[2] || "N/A",
               date: row[7] || "N/A",
+              status: row[8] || "N/A"
             }))
           );
         } else {
@@ -69,8 +71,7 @@ const ConfirmAdmin = () => {
     }));
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/api/Accepted`,
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Accepted`,
         {
           method: "POST",
           headers: {

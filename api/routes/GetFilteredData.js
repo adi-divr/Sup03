@@ -31,7 +31,6 @@ module.exports = async function GetFilteredData(req, res) {
         });
 
         const rows = response.data.values;
-        console.log(rows);
         if (!rows || rows.length <= 1) {
             return res.status(404).json({ message: 'No data found' });
         }

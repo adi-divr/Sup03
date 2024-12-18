@@ -86,7 +86,7 @@ const Slotform = () => {
           placeholder="Your Mobile number.."
           required
         />
-        <h3>Weight</h3>
+        <h5>Weight</h5>
         <p>Do you weigh below 100kg?</p>
         <div className="radio-group">
           <label>
@@ -121,7 +121,7 @@ const Slotform = () => {
     </p>
   </div>
 )}
-                <h3>Age</h3>
+                <h5>Age</h5>
         <p>Are you over 18?</p>
         <div className="radio-group">
           <label>
