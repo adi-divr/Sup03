@@ -37,9 +37,6 @@ const handleBook = () => {
     navigate(`/calendar`);
 }
 
-
-
-
   return (
     <div className="container-Home">
       <div className="logo-Home">

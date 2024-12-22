@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../../src/assets/logo.png"; 
 import "./adminconfirm.css";
+import { useNavigate } from "react-router-dom"; 
 
 
 
@@ -9,6 +10,7 @@ const ConfirmAdmin = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(location.search);
   const slotParam = searchParams.get("slot");
@@ -67,7 +69,7 @@ const ConfirmAdmin = () => {
       number: booking.number,
       bookingDate: booking.date,
       slotID: slotParam,
-      paymentMade: (bookings.length * 1500).toString(),
+      paymentMade: '1500',
     }));
 
     try {
@@ -88,7 +90,8 @@ const ConfirmAdmin = () => {
       }
 
       alert("Booking accepted and saved!");
-    } catch (error) {
+      navigate(`/adminview?isadmin=true`)    //new change
+      } catch (error) {
       console.error("Error submitting data:", error);
       alert("Failed to submit booking data. Please try again.");
     }
@@ -121,13 +124,22 @@ const ConfirmAdmin = () => {
       }
   
       alert(`Booking for slot ${slotParam} rejected successfully!`);
+      navigate(`/adminview?isadmin=true`)    //new change
+
     } catch (error) {
       console.error("Error rejecting booking:", error);
       alert("Failed to reject booking. Please try again.");
     }
   };
 
-
+  const formatDate = (date) => {
+    if (!date) return "N/A";
+    const dateParts = date.split("-");
+    if (dateParts.length !== 3) return date; // Return as-is if not a valid date
+    const [year, month, day] = dateParts;
+    return `${day}/${month}/${year}`;
+  };
+  
 
   return (
     <div className="confirmation-container">
@@ -142,7 +154,7 @@ const ConfirmAdmin = () => {
           <span className="total-slots">
             Total Slots: <strong>{bookings.length}</strong>
           </span>
-          <span className="date">{bookings[0]?.date || "N/A"}</span>
+          <span className="date">{formatDate(bookings[0]?.date || "N/A")}</span>
         </div>
         <div className="slot-list">
           {error ? (

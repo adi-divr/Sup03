@@ -1,4 +1,4 @@
- .calendar-container {
+ /* /* .calendar-container {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -189,6 +189,220 @@ h3 {
   .calendar-footer button {
     padding: 8px 15px; 
     font-size: 12px; 
-  }
+  } first code
 }
+ */
+ @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+ /* html {
+   font-size: 10px;
+    width: 100vw; 
+   height: 100vh;
+ }
+ 
+ html body {
+   font-family: 'Roboto', sans-serif;
+   overflow: hidden;
+   cursor: default;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ 
+ html span {
+   vertical-align: top;
+ }
+ 
+ * {
+   box-sizing: border-box; 
+ } */
+ 
+ @media screen and (max-width: 768px) {
+   html {
+     height: 120vh;
+     font-size: 8.8px;
+   }
+ 
+   html body {
+     margin: 0 5px;
+   }
+ }
+ 
+ .calendarContainer-new-user {
+   width: 700px;
+   margin: 0 auto;
+   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ }
+ 
+ @media screen and (max-width: 768px) {
+   .calendarContainer-new-user {
+     max-width: 100vw;
+     min-width: 320px;
+     margin: 0;
+     position: fixed;
+   }
+ }
+ 
+ .monthYearTitleContainer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px; 
+   margin-bottom: 40px;
+ }
+ 
+ .monthYearTitleContainer .monthWrap,
+ .monthYearTitleContainer .yearWrap {
+   text-align: center;
+   color: #ff3b30;
+ }
+ 
+ .monthYearTitleContainer .monthWrap {
+   font-size: 3rem;
+ }
+ 
+ .monthYearTitleContainer .yearWrap {
+   font-size: 2rem;
+ }
+ 
+ @media screen and (max-width: 768px) {
+   .monthYearTitleContainer {
+     width: 100vw;
+     min-width: 320px;
+     max-width: 100vw;
+   }
+ }
+ 
+ .weekdayTitleContainer {
+   display: flex;
+   justify-content: space-between;
+   margin: 0 auto;
+ }
+ 
+ .weekdayTitleContainer .weekWrap {
+   width: calc(100% / 7); 
+   text-align: center;
+   padding: 10px 0;
+   font-size: 2.2rem;
+ }
+ 
+ @media screen and (max-width: 768px) {
+   .weekdayTitleContainer {
+     width: 100vw;
+     max-width: 100vw;
+     min-width: 320px;
+     margin: 0;
+   }
+ }
+ 
+ .calendarsWrap {
+   display: flex;
+   justify-content: center;
+ }
+ 
+ .calendarsWrap .dayCellsContainer {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%; 
+   gap: 0;
+ }
+ 
+ .calendarsWrap .dayCellsContainer .cell,
+ .calendarsWrap .dayCellsContainer .cell-blank {
+   width: calc(100% / 7); 
+   height: 70px;
+   padding: 10px 0;
+   text-align: center;
+   font-size: 2.5rem;
+   line-height: 2.5rem;
+ }
+ 
+ .calendarsWrap .dayCellsContainer .cell-blank {
+   border-top: 0.5px solid transparent;
+ }
+ 
+ .calendarsWrap .dayCellsContainer .dayNum {
+   width: 5rem;
+   padding: 1.25rem 0;
+   display: inline-block;
+   border-radius: 50%;
+ }
+ 
+ .selected {
+   background: #ff3b30;
+   color: white;
+ }
+ 
+ .arrow-wrap {
+   position: absolute;
+   width: 0;
+   height: 0;
+ }
+ 
+ .arrow-wrap .arrow {
+   width: 30px;
+   height: 30px;
+   border-left: 2px solid rgba(0, 0, 0, 0.14);
+   border-bottom: 2px solid rgba(0, 0, 0, 0.14);
+   cursor: pointer;
+ }
+ 
+ .arrow-wrap .arrow.left {
+   transform: rotate(45deg);
+   margin: 200px 0 0 -90px;
+ }
+ 
+ .arrow-wrap .arrow.right {
+   transform: rotate(-135deg);
+   margin: 200px 0 0 760px;
+ }
+ 
+ @media screen and (max-width: 768px) {
+   .arrow-wrap {
+     display: none;
+   }
+ }
+ 
+ .monthChangeButton {
+   background-color: transparent;
+   border: none;
+   font-size: 2rem;
+   cursor: pointer;
+   color: #ff3b30;
+ }
+ 
+ .dayCellsContainer .cell,
+ .dayCellsContainer .cell-blank {
+   width: calc(100% / 7); 
+   height: 90px; 
+   padding: 10px 0;
+   text-align: center;
+   font-size: 2.5rem;
+   position: relative; 
+ }
+ 
+ .dayCellsContainer .dayNum {
+   width: 5rem;
+   padding: 1.25rem 0;
+   display: inline-block;
+   border-radius: 50%;
+ }
+ 
+ .dayCellsContainer .dayNumber {
+   position: absolute;
+   bottom: 5px;
+   right: 10px;
+   font-size: 1rem;
+   color: blue;
+   font-weight: bold;
+ }
+ 
+ .selected {
+   background: #ff3b30;
+   color: white;
+ }
+ .highlighted {
+  color: red;
+  font-weight: bold;
+} 

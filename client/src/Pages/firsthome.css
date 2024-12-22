@@ -60,7 +60,7 @@ body {
 }
 
 .btn-home {
-  background-color: #000;
+  background-color: rgba(240, 87, 55, 1);;
   color: #fff;
   border: none;
   border-radius: 25px;

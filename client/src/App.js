@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import Calendar from "./Pages/Calendar";
+import CalendarWithNavigation from "./Pages/Calendar";
 import Slotbooking from "./Pages/Slotbooking";
 import Slotform from "./Pages/Slotform";
 import Confirm from "./Pages/ConfirmPage";
@@ -15,7 +15,7 @@ import FirstHome from "./Pages/FirstHome"
 import LoginPage from "./Pages/Login";
 import { AuthProvider } from "./Context/Authcontext";
 import PrivateRoute from "./Context/PrivateRoute";
-
+import DateBlocker from "./Pages/DateBlocker"
 
 function AppRoutes() {
   const location = useLocation();
@@ -26,9 +26,11 @@ function AppRoutes() {
     // Render AdminView and AdminCalendar for admin
     return (
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />    
         <Route path="/adminview" element={ <PrivateRoute><AdminView /></PrivateRoute>} />
         <Route path="/adminCalendar" element={<PrivateRoute><AdminCalendar /></PrivateRoute>} />
+        <Route path="/blockdate" element={ <PrivateRoute><DateBlocker /></PrivateRoute>} />
+
         <Route path="/admincalendarvalueview" element={<PrivateRoute><AdminDataView /></PrivateRoute>} />
         <Route path="/performance" element={<PrivateRoute><PerformancePage /></PrivateRoute>} />
         <Route path="/adminConfirm" element={<PrivateRoute><ConfirmAdmin /></PrivateRoute>} />
@@ -40,7 +42,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<FirstHome />} />
-      <Route path="/calendar" element={<Calendar />} />
+      <Route path="/calendar" element={<CalendarWithNavigation />} />
       <Route path="/slotbooking" element={<Slotbooking />} />
       <Route path="/slotform" element={<Slotform />} />
       <Route path="/confirmPage" element={<Confirm />} />

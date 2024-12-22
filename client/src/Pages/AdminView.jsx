@@ -10,55 +10,22 @@ const AdminView = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(`${API_BASE_URL}/api/GetData`);
-  //       console.log(response.status);
 
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch data");
-  //       }
-  //       const result = await response.json();
-  //       const rows = result.data;
-
-  //       const formattedData = rows.slice(1).map((row) => ({
-  //         name: row[0] || "",
-  //         email: row[1] || "",
-  //         phone: row[2] || "",
-  //         slot: row[5] || "",
-  //         ddmm: row[6] || "",
-  //         bookingDate: row[7] || "",
-  //       }));
-
-  //       setBookings(formattedData);
-  //     } catch (err) {
-  //       if (err instanceof Error) {
-  //         setError(err.message);
-  //       } else {
-  //         setError("An unknown error occurred");
-  //       }
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/GetData`);
-        console.log("Response Status:", response.status);
         const text = await response.text(); // Log raw response
-        console.log("Raw Response:", text);
   
         if (!response.ok) {
-          throw new Error(`Failed to fetch data: ${response.status}`);
+          throw new Error(`No Data: ${response.status}`);
         }
   
         const result = JSON.parse(text); 
-        console.log("Parsed Data:", result);
   
         const rows = result.data;
+        console.log("Parsed Data:", rows);
+
         const formattedData = rows.slice(1).map((row) => ({
           name: row[0] || "",
           email: row[1] || "",
@@ -90,6 +57,23 @@ const AdminView = () => {
   };
 //adminview > admin confirm
 //adminview can go to admincalendar
+
+
+const formatDate = (date) => {
+  if (!date) return "N/A";
+  const dateParts = date.split("-");
+  if (dateParts.length !== 3) return date; // Return as-is if not a valid date
+  const [year, month, day] = dateParts;
+  return `${day}/${month}/${year}`;
+};
+
+
+
+
+
+
+
+
   return (
 
     
@@ -125,17 +109,17 @@ const AdminView = () => {
             <div className="booking-card" key={index}>
               <div className="card-header">
                 {/* <span>Total Slots: {booking.slot}</span> */}
-                <span>Slot Date: {booking.bookingDate}</span>
+                <span>Slot Date: {formatDate(booking.bookingDate)}</span>
               </div>
               <div className="card-details">
                 <p>
                   <strong>{booking.name}</strong>
                 </p>
                 <p>
-                  <i className="fa fa-phone"></i> {booking.phone}
+                   {booking.phone}
                 </p>
                 <p>
-                  <i className="fa fa-envelope"></i> {booking.email}
+                  {booking.email}
                 </p>
               </div>
               <button
