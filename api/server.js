@@ -32,7 +32,7 @@ const corsOptions = {
   origin: 'https://sup-kochi.azurewebsites.net/', // Allow only the GitHub Pages origin
   methods: ['GET', 'POST'], // Allow GET and POST requests
   credentials: true,
-}; 
+};  
 
  app.use(cors(corsOptions));
 

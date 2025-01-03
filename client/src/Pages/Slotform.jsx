@@ -1,5 +1,5 @@
 import React, {  useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // React Router
+import { useNavigate, useLocation } from "react-router-dom"; 
 import logo from "../../src/assets/logo.png"; 
 import "./slotform.css";
 
@@ -15,7 +15,7 @@ const Slotform = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search); // Parse query params
+  const queryParams = new URLSearchParams(location.search); 
   const selected = queryParams.get("selectedDate");
   const slots = Number(queryParams.get("slots"));
 
@@ -48,11 +48,11 @@ const Slotform = () => {
 
   return (
     <div className="container">
-<div className="logo">
-          <img src={logo} alt="Logo" width={150} height={150} />
+ <div className="logo-Home-calendar">
+          <img src={logo} alt="Logo-Home" width={150} height={150} />
         </div>
         <p className="centered-text">
-  <strong>TELL US MORE ABOUT YOURSELF</strong>
+  TELL US MORE ABOUT YOURSELF
 </p>
 
       <form onSubmit={handleSubmit}>
@@ -147,9 +147,9 @@ const Slotform = () => {
         </div>
 
         {currentFormIndex + 1 < slots ? (
-          <button type="submit">Next</button>
+          <button type="submit" className="form-button">Next</button>
         ) : (
-          <button type="submit">Submit</button>
+          <button type="submit"  className="form-button">Submit</button>
         )}
       </form>
     </div>

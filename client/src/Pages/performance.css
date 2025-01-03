@@ -1,7 +1,7 @@
 
   .weekly-scorecard {
     text-align: center;
-    font-family: Arial, sans-serif;
+    color: black;
   }
  
   .month-selector-container {
@@ -15,7 +15,7 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    background-color:#f5c542
+    background-color:rgba(255, 225, 138, 1)
     }
   
   .month-selector {
@@ -52,6 +52,7 @@
     width: 400px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
   }
   
   .week-card h3 {

@@ -3,7 +3,7 @@ import "./adminview.css";
 import logo from "../../src/assets/logo.png";
 import nextButton from "../../src/assets/next.png"; 
 import { useNavigate } from "react-router-dom"; 
-
+import Navbar from "./NavBar";
 
 const AdminView = () => {
   const [bookings, setBookings] = useState([]);
@@ -24,7 +24,6 @@ const AdminView = () => {
         const result = JSON.parse(text); 
   
         const rows = result.data;
-        console.log("Parsed Data:", rows);
 
         const formattedData = rows.slice(1).map((row) => ({
           name: row[0] || "",
@@ -52,54 +51,46 @@ const AdminView = () => {
     );
   };
 
-  const handleNavigation = (route) => {
-    navigate(route);
-  };
+ 
 //adminview > admin confirm
 //adminview can go to admincalendar
 
 
 const formatDate = (date) => {
   if (!date) return "N/A";
-  const dateParts = date.split("-");
-  if (dateParts.length !== 3) return date; // Return as-is if not a valid date
-  const [year, month, day] = dateParts;
-  return `${day}/${month}/${year}`;
+
+  try {
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate)) return date;
+
+    const options = { month: "short", day: "2-digit", year: "2-digit" };
+    const formatter = new Intl.DateTimeFormat("en-US", options);
+    const formattedDate = formatter.format(parsedDate);
+
+    return formattedDate.replace(", ", "/");
+  } catch {
+    return date; 
+  }
 };
 
 
 
 
 
-
-
+ console.log(bookings)
 
   return (
 
     
     <div className="admin-container">
 
-<div className="logo">
-          <img src={logo} alt="Logo" width={150} height={150} />
-        </div>
-
-
-      
-      <div className="navbar-container">
-        <div className="navbar">
-        <button className="nav-button" onClick={() => handleNavigation("/adminview?isadmin=true")}>
-          Manage
-        </button>
-        <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>
-          Calendar
-        </button>
-        <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
-          Scorecard
-        </button>
-        </div>
+<div className="logo-Home-admin">
+        <img src={logo} alt="Logo-Home" width={150} height={150} />
       </div>
 
-      <p>Manage Bookings</p>
+      <Navbar/>
+
+      <p style={{marginBottom:'40px'}}>Manage Bookings</p>
 
       {error ? (
         <p className="error">{error}</p>
@@ -109,7 +100,7 @@ const formatDate = (date) => {
             <div className="booking-card" key={index}>
               <div className="card-header">
                 {/* <span>Total Slots: {booking.slot}</span> */}
-                <span>Slot Date: {formatDate(booking.bookingDate)}</span>
+                <span>{formatDate(booking.bookingDate)}</span>
               </div>
               <div className="card-details">
                 <p>

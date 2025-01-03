@@ -5,18 +5,16 @@ import logo from "../../src/assets/logo.png";
 import imageQR from "../../src/assets/QR.png";
 
 const Checklast = () => {
-  // Extract amount dynamically from URL
   const query = new URLSearchParams(useLocation().search);
   // const amount = query.get("amount") || "0";
 
   return (
     <div className="confirm-container1">
       <div className="logo-container1">
-        <img src={logo} alt="Logo1" width={100} height={100} />
+        <img src={logo} alt="Logo1"  />
       </div>
       <p className="scan-title1">SCAN TO PAY</p>
 
-      {/* QR Code Section */}
       <div className="qr-section1">
         <img
           src={imageQR}
@@ -30,7 +28,6 @@ const Checklast = () => {
         </p>
       </div>
 
-      {/* Instructions */}
       <div className="instructions1">
         <ol>
           <li>

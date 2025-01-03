@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./dateblocker.css";
+import { useNavigate } from "react-router-dom"; 
+import logo from "../../src/assets/logo.png";
 
 const DateBlocker = () => {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [blockedDates, setBlockedDates] = useState([]);
+  const navigate = useNavigate();
 
   // Function to format date to DD/MM/YYYY
   const formatDate = (date) => {
     if (!date) return "N/A";
     const dateParts = date.split("-");
-    if (dateParts.length !== 3) return date; // Return as-is if not a valid date
+    if (dateParts.length !== 3) return date; 
     const [year, month, day] = dateParts;
     return `${day}/${month}/${year}`;
   };
@@ -76,10 +79,33 @@ const DateBlocker = () => {
       alert(error.message || "An unexpected error occurred.");
     }
   };
-
+  const handleNavigation = (route) => {
+    navigate(route);
+  };
   return (
+    <>
+    <div className="logo-Home-admin">
+        <img src={logo} alt="Logo-Home" width={150} height={150} />
+      </div>
+
+      
+      <div className="navbar-container-admin">
+        <div className="navbar-admin">
+        <button className="nav-button" onClick={() => handleNavigation("/adminview?isadmin=true")}>
+          Manage
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>
+          Calendar
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
+          Scorecard
+        </button>
+        </div>
+      </div>
     <div className="block-date-container">
+
       <div className="block-date-wrapper">
+        
         <h3 className="block-date-title">Blocking Date Selection</h3>
         <div className="block-date-inputs">
           <div className="block-date-group">
@@ -107,16 +133,22 @@ const DateBlocker = () => {
           Submit
         </button>
 
-        <h3 className="block-date-subtitle">Blocked Dates</h3>
-        <ul className="blocked-dates-list">
+      </div>
+      
+      
+    </div>
+    <h3 className="block-date-subtitle">Blocked Dates</h3>
+    <div className="blocked-dates-list" >
+        <ul className="blocked-dates-lists">
           {blockedDates.map((date, index) => (
             <li key={index} className="blocked-date-item">
               {index + 1}. {formatDate(date.fromDate)} - {formatDate(date.toDate)}
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+        </div>
+    </>
+
   );
 };
 

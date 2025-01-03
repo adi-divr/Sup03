@@ -1,0 +1,35 @@
+.navbar-container-admin {
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .navbar-admin {
+    display: flex;
+    justify-content: space-between;
+    gap: 0;
+    background-color: black;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .nav-button {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    background-color: transparent;
+    padding: 12px 20px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    border: none;
+  }
+  
+  .nav-button.active {
+    color: #ffd700;
+  }
+  
+  .nav-button:hover {
+    background-color: #ffd700;
+    color: black;
+  }

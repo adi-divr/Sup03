@@ -1,25 +1,25 @@
-/* Overall Container */
 .block-date-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #ffffff; /* White background */
-  height: 100vh;
+  background-color: black; 
   margin: 0;
 }
 
-/* Wrapper with Blue Dashed Border */
 .block-date-wrapper {
-  border: 2px dashed #0078d4; /* Blue dashed border */
   padding: 20px;
   text-align: center;
-  background-color: #f8f9fa; /* Light gray background */
+  background-color: #f8f9fa; 
   width: 300px;
-  border-radius: 8px;
+  border-radius:11px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+.blocked-dates-list{
+  margin-left: 35px !important;
+  justify-content: center;
+align-self: center;
+align-items: center;
+}
 
-/* Title */
 .block-date-title {
   color: #0078d4;
   font-size: 1rem;
@@ -27,7 +27,6 @@
   margin-bottom: 16px;
 }
 
-/* Subtitle for Blocked Dates */
 .block-date-subtitle {
   color: #ff0000;
   font-size: 1rem;
@@ -35,7 +34,6 @@
   margin-top: 20px;
 }
 
-/* Blocked Dates List */
 .blocked-dates-list {
   list-style-type: none;
   padding: 0;
@@ -53,14 +51,12 @@
   color: #000000;
 }
 
-/* Inputs Container */
 .block-date-inputs {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Input Group Styling */
 .block-date-group {
   display: flex;
   flex-direction: column;
@@ -90,7 +86,6 @@
   box-shadow: 0px 0px 3px rgba(0, 120, 212, 0.5);
 }
 
-/* Submit Button Styling */
 .block-date-submit {
   margin-top: 20px;
   padding: 10px 20px;
@@ -98,7 +93,7 @@
   color: white;
   font-size: 1rem;
   border: none;
-  width: 200px;
+  width: 100px;
   border-radius: 26px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -108,11 +103,13 @@
   background-color: #005fa3;
 }
 
-/* Responsive CSS for Mobile Phones */
 @media (max-width: 600px) {
   .block-date-wrapper {
-    width: 250px;
+    width: 300px;
     padding: 15px;
+  }
+  .blocked-dates-list{
+    width: 300px;
   }
 
   .block-date-title {

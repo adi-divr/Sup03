@@ -1,7 +1,7 @@
 body {
     margin: 0;
-    font-family: "Arial", sans-serif;
-    background-color: #fff;
+    background-color: black;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -24,7 +24,7 @@ body {
   .scan-title1 {
     font-size: 16px;
     font-weight: 600;
-    color: #333;
+    color: white;
     margin-bottom: 15px;
   }
   
@@ -54,7 +54,7 @@ body {
     margin-top: 10px;
     font-size: 16px;
     font-weight: 600;
-    color: #333;
+    color: white;
   }
   
   .amount-value1 {
@@ -76,4 +76,8 @@ body {
   .instructions1 li {
     margin-bottom: 10px;
   }
-  
+  .logo-container1 img{
+    width: 100px; 
+    height: auto; 
+    object-fit: contain; 
+  }

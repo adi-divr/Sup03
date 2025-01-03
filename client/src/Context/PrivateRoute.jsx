@@ -5,8 +5,7 @@ import { useAuth } from "../Context/Authcontext"
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   
-  // If user is not authenticated, redirect to login
-  return isAuthenticated ? children : <Navigate to="/" />;
+  return isAuthenticated ? children : <Navigate to="/?isadmin=true" />;
 };
 
 export default PrivateRoute;

@@ -2,7 +2,7 @@
 body{
   display: flex;
   
-  
+  font-size: 18px;
 }
 
 
@@ -10,11 +10,11 @@ body{
     justify-content: center;
     align-items: center;
     align-content: center;
-    max-width: 340px; 
     margin: 0 auto;
     padding: 20px 15px; 
     text-align: start;
-    
+    width: 400px;
+
   }
   
   img {
@@ -27,11 +27,12 @@ body{
 
 
   form {
-    background: #f9f9f9;
+    background: black;
+    border: 2px solid yellow;
     padding: 20px 30px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100% ;
   }
   
   form label {
@@ -145,11 +146,20 @@ body{
     object-fit: contain;
     margin: 0 auto 20px;
   }
-  
+  .centered-text{
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+  }
+
+.form-button{
+  border: 2px solid white;
+}
   
   @media (max-width: 480px) {
     .container {
-      max-width: 320px;
+      width: 350px;
     }
   
     img {

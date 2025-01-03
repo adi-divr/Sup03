@@ -5,52 +5,6 @@ import "./slotbooking.css";
 
 
 
-// const Slotbooking = () => {
-//   const location = useLocation();
-//   const navigate = useNavigate(); 
-//   const queryParams = new URLSearchParams(location.search); // Parse 
-//   const selectedDate = queryParams.get("selectedDate");
-  
-//   const [slots, setSlots] = useState(0);
-
-//   const handleIncrement = () => setSlots(slots + 1);
-//   const handleDecrement = () => setSlots(slots > 0 ? slots - 1 : 0);
-
-//   const handleSubmit = () => {
-//     console.log(`Date: ${selectedDate}, Slots: ${slots}`);
-//     navigate(`/slotform?selectedDate=${selectedDate}&slots=${slots}`); // Navigate to the slot form
-//   };
-
-//   return (
-//     <div className="container">
-//       <div className="header">
-//       <div className="logo">
-//           <img src={logo} alt="Logo" width={150} height={150} />
-//         </div>
-//         <h2>SLOTS</h2>
-//       </div>
-//       <div className="card">
-//         <div className="row">
-//           <span>Date selected</span>
-//           <span>{selectedDate || "No date selected"}</span>
-//         </div>
-//         <div className="row">
-//           <span>No. of slots</span>
-//           <div className="counter">
-//             <button onClick={handleDecrement}>&#9660;</button>
-//             <span>{slots}</span>
-//             <button onClick={handleIncrement}>&#9650;</button>
-//           </div>
-//         </div>
-//         <button className="submit" onClick={handleSubmit} disabled={slots < 1 || slots > 12}>
-//           Submit
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Slotbooking;
 const Slotbooking = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,7 +22,12 @@ const Slotbooking = () => {
 
   const [slots, setSlots] = useState(0);
 
-  const handleIncrement = () => setSlots(slots + 1);
+  const handleIncrement = () => {
+    if (slots < 12) {
+      setSlots(slots + 1);
+    }
+  };
+
   const handleDecrement = () => setSlots(slots > 0 ? slots - 1 : 0);
 
   const handleSubmit = () => {
@@ -77,24 +36,30 @@ const Slotbooking = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <div className="logo">
-          <img src={logo} alt="Logo" width={150} height={150} />
+    <div className="container-slotbooking">
+      <div className="header-slotbooking">
+        <div className="logo-Home-calendar">
+          <img src={logo} alt="Logo-Home" width={150} height={150} />
         </div>
-        <h2>SLOTS</h2>
+        <p>SLOTS</p>
       </div>
-      <div className="card">
-        <div className="row">
+      <div className="card-slotbooking">
+        <div className="row-slotbooking">
           <span>Date selected</span>
           <span>{formatDate(selectedDate)}</span>
         </div>
-        <div className="row">
+        <div className="row-slotbooking">
           <span>No. of slots</span>
-          <div className="counter">
+          <div className="counter-slotbooking">
             <button onClick={handleDecrement}>&#9660;</button>
             <span>{slots}</span>
-            <button onClick={handleIncrement}>&#9650;</button>
+            <button
+              onClick={handleIncrement}
+              className={slots >= 12 ? "disabled" : ""}
+              disabled={slots >= 12}
+            >
+              &#9650;
+            </button>
           </div>
         </div>
         <button className="submit" onClick={handleSubmit} disabled={slots < 1 || slots > 12}>

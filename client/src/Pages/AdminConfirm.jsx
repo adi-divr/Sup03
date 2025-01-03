@@ -14,7 +14,9 @@ const ConfirmAdmin = () => {
 
   const searchParams = new URLSearchParams(location.search);
   const slotParam = searchParams.get("slot");
-
+  const handleNavigation = (route) => {
+    navigate(route);
+  };
   useEffect(() => {
     const fetchData = async () => {
       if (!slotParam) {
@@ -134,59 +136,86 @@ const ConfirmAdmin = () => {
 
   const formatDate = (date) => {
     if (!date) return "N/A";
+  
     const dateParts = date.split("-");
     if (dateParts.length !== 3) return date; // Return as-is if not a valid date
+  
     const [year, month, day] = dateParts;
-    return `${day}/${month}/${year}`;
+  
+    const months = [
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+    const monthIndex = parseInt(month, 10) - 1; 
+    const monthName = months[monthIndex] || month; // Fallback to month number if invalid
+  
+    return `${monthName} ${day}`;
   };
   
 
   return (
     <div className="confirmation-container">
       <header className="confirmation-header">
-        <div className="logo">
-          <img src={logo} alt="Logo" width={150} height={150} />
+      <div className="logo-Home-admin">
+        <img src={logo} alt="Logo-Home" width={150} height={150} />
+      </div>
+      <div className="navbar-container-admin">
+        <div className="navbar-admin">
+        <button className="nav-button" onClick={() => handleNavigation("/adminview?isadmin=true")}>
+          Manage
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/adminCalendar?isadmin=true")}>
+          Calendar
+        </button>
+        <button className="nav-button" onClick={() => handleNavigation("/performance?isadmin=true")}>
+          Scorecard
+        </button>
         </div>
+      </div>
       </header>
       <main className="confirmation-main">
         <p className="confirmation-title">Confirmation Portal</p>
-        <div className="slot-info">
-          <span className="total-slots">
-            Total Slots: <strong>{bookings.length}</strong>
-          </span>
-          <span className="date">{formatDate(bookings[0]?.date || "N/A")}</span>
-        </div>
+        
         <div className="slot-list">
           {error ? (
             <p className="error">{error}</p>
           ) : bookings.length > 0 ? (
             <div className="slot-card">
+              <div className="slot-info">
+          <span className="total-slots">
+            Total Slots: <strong>{bookings.length}</strong>
+          </span>
+          <span className="date">{formatDate(bookings[0]?.date || "N/A")}</span>
+        </div>
               {bookings.map((slot, index) => (
-                <div key={index} className="slot-details">
-                  <div className="detail-item">
-                    <strong>Name:</strong> {slot.name}
-                  </div>
-                  <div className="detail-item">
-                    <strong>Weight:</strong>{" "}
-                    <span
-                      className={`weight ${
-                        slot.weight === "above 100" ? "red-text" : "blue-text"
-                      }`}
-                    >
-                      {slot.weight}
-                    </span>
-                  </div>
-                  <div className="detail-item">
-                    <strong>Age:</strong> {slot.age}
-                  </div>
-                </div>
-              ))}
+  <div key={index} className="slot-details">
+    <div className="detail-item">
+      Name: <strong>{slot.name}</strong>
+    </div>
+    <div className="detail-item">
+      Weight:{" "}
+      <span
+        className={slot.weight === "yes" ? "blue-text" : "red-text"}
+      >
+        {slot.weight === "yes" ? "below 100" : "above 100"}
+      </span>
+    </div>
+    <div className="detail-item">
+      Age:{" "}
+      <span
+        className={slot.age === "yes" ? "blue-text" : "red-text"}
+      >
+        {slot.age === "yes" ? "above 18" : "below 18"}
+      </span>
+    </div>
+  </div>
+))}
             </div>
           ) : (
             <p>No bookings available.</p>
           )}
         </div>
-        <div className="action-buttons">
+        <div className="action-buttons-adminview">
           <button className="accept-button" onClick={handleAccept}>
             Accept
           </button>
